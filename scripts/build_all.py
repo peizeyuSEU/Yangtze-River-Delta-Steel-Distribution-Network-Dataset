@@ -13,7 +13,7 @@ def main():
     nodes=read(raw/'nodes_raw.csv'); markets=read(raw/'market_observations_raw.csv'); dcs=read(raw/'dc_observations_raw.csv'); osrm=json.loads((root/'data/cache/osrm_response.json').read_text(encoding='utf-8')); ids=[x['node_id'] for x in nodes]; dist=osrm['distances']
     source=[]
     def add(i,var,e,city,val,unit,cls,notes=''):
-        sid='SRC_NODE_RECORDS' if i.startswith('NODE_') else 'SRC_STAT_RECORDS' if i.startswith('STAT_') else 'SRC_PRICE_RECORDS' if i.startswith('PRICE_') else 'SRC_RENT_RECORDS' if i.startswith('RENT_') else 'SCENARIO_ASSUMPTION'
+        sid='SRC_NODE_RECORDS' if i.startswith('NODE_') else 'SRC_STAT_RECORDS' if i.startswith('STAT_') else 'SRC_PRICE_RECORDS' if i.startswith('PRICE_') else 'SRC_RENT_RECORDS' if i.startswith('RENT_') else 'SRC_OSRM_CACHE' if i.startswith('OSRM_') else 'SCENARIO_ASSUMPTION'
         source.append({'source_record_id':i,'variable_name':var,'entity_id':e,'city':city,'original_value':val,'original_unit':unit,'normalized_value':val,'normalized_unit':unit,'source_id':sid,'source_name':'Structured source record' if cls!='scenario' else 'Transparent scenario assumption','source_url':'','page_or_section':'structured record','observation_date':'2024/2026','access_date':'2026-08-01','collection_method':'manual structured record','parameter_class':cls,'redistribution_status':'review_required','confidence_level':'medium','proxy_flag':'true' if cls=='proxy' else 'false','manual_entry_flag':'true','notes':notes})
     for r in nodes:add('NODE_'+r['node_id'],'coordinates',r['node_id'],r['city'],r['latitude']+';'+r['longitude'],'lat;lon','observed','city-centre coordinate, not enterprise address')
     for r in markets:

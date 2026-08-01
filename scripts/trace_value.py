@@ -8,11 +8,13 @@ def main():
  if p.suffix=='.json':
   obj=json.loads(p.read_text());
   if a.column not in obj:print('ERROR: field not found',file=sys.stderr);return 2
-  result={'output':{'file':a.file,'record_id':'case_config','column':a.column,'value':obj[a.column],'unit':'configuration'},'lineage_role':'scenario','source_records':[],'source_catalog':[],'transformations':[{'transformation_id':'T_CONFIG_MAPPING_001'}],'scenarios':[{'scenario_id':'SCENARIO_ASSUMPTION'}],'parent_inputs':[],'verification_status':'documented','unresolved_provenance':['carbon quota not generated'] if a.column=='carbon_quota' else []}
+  ls=[x for x in rd(root/'metadata/record_lineage.csv') if x['output_file']==a.file and x['output_record_id']=='case_config' and x['output_column']==a.column]
+  if not ls:print('ERROR: lineage not found',file=sys.stderr);return 3
+  sources={x['source_record_id']:x for x in rd(root/'data/source_records/source_records.csv')};catalog={x['source_id']:x for x in rd(root/'metadata/source_catalog.csv')};trans={x['transformation_id']:x for x in rd(root/'metadata/transformation_registry.csv')};sc={x['scenario_id']:x for x in rd(root/'metadata/scenario_registry.csv')};result={'output':{'file':a.file,'record_id':'case_config','column':a.column,'value':obj[a.column],'unit':'configuration'},'lineage_role':ls[0]['lineage_role'],'source_records':[sources[x['source_record_id']] for x in ls if x['source_record_id'] in sources],'source_catalog':[catalog[sources[x['source_record_id']]['source_id']] for x in ls if x['source_record_id'] in sources and sources[x['source_record_id']]['source_id'] in catalog],'transformations':[trans[x['transformation_id']] for x in ls if x['transformation_id'] in trans],'scenarios':[sc[z] for x in ls for z in x['scenario_id'].split('|') if z in sc],'parent_inputs':[json.loads(x['parent_input_ids']) for x in ls],'verification_status':ls[0]['verification_status'],'unresolved_provenance':['carbon quota not generated'] if a.column=='carbon_quota' else []}
  else:
   rows=rd(p);key=next((x for x in ('market_id','dc_id','supplier_id','node_id') if x in rows[0]),None);r=next((x for x in rows if x.get(key)==a.record),None)
   if r is None and '|' in a.record:
-   d,m=a.record.split('|',1);r=next((x for x in rows if x.get('dc_id')==d and x.get('market_id')==m),None)
+   d,m=a.record.split('|',1);r=next((x for x in rows if (x.get('supplier_id')==d and x.get('dc_id')==m) or (x.get('dc_id')==d and x.get('market_id')==m)),None)
   if r is None or a.column not in r:print('ERROR: record or field not found',file=sys.stderr);return 2
   rec=(r.get('supplier_id')+'|'+r.get('dc_id') if a.file=='supplier_dc.csv' else r.get('dc_id')+'|'+r.get('market_id') if a.file=='dc_market.csv' else r.get(key)); ls=[x for x in rd(root/'metadata/record_lineage.csv') if x['output_file']==a.file and x['output_record_id']==rec and x['output_column']==a.column]
   if not ls:print('ERROR: lineage not found',file=sys.stderr);return 3

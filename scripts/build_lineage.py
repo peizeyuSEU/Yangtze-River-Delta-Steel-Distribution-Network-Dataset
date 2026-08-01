@@ -29,14 +29,14 @@ def main():
     elif fn=='market_params.csv':
      if col in ('observed_price_cny_per_tonne','price_status'):source='PRICE_'+mid;role='proxy' if any(x['source_record_id']==source and x['proxy_flag']=='true' for x in src) else ('observed' if col=='observed_price_cny_per_tonne' else 'identifier');verify='pending_verification'
      elif col=='demand_weight':source='STAT_'+mid;tid=T[col][0];parents=[f'STAT_{mid}']+[f'STAT_{x["market_id"]}' for x in rd(root/'data/raw/public/market_observations_raw.csv')]
-     elif col=='mu_annual_tonnes':source='STAT_'+mid;tid=T[col][0];scenario=S['regional_total_annual_demand_tonnes'][0];parents=[f'market_params:{mid}:demand_weight']
-     elif col=='mu_daily_tonnes':tid=T[col][0];scenario=S['operating_days_per_year'][0];parents=[f'market_params:{mid}:mu_annual_tonnes']
-     elif col=='sigma2_daily':tid=T[col][0];scenario=S['demand_cv'][0];parents=[f'market_params:{mid}:mu_daily_tonnes']
-     elif col=='v_i_baseline':source='PRICE_'+mid;tid=T[col][0];scenario=S['production_cost_cny_per_tonne'][0];parents=[f'market_params:{mid}:observed_price_cny_per_tonne'];verify='pending_verification'
+     elif col=='mu_annual_tonnes':source='STAT_'+mid;tid=T[col][0];scenario=S['regional_total_annual_demand_tonnes'][0];parents=[f'market_params.csv:{mid}:demand_weight',scenario]
+     elif col=='mu_daily_tonnes':tid=T[col][0];scenario=S['operating_days_per_year'][0];parents=[f'market_params.csv:{mid}:mu_annual_tonnes',scenario]
+     elif col=='sigma2_daily':tid=T[col][0];scenario=S['demand_cv'][0];parents=[f'market_params.csv:{mid}:mu_daily_tonnes',scenario]
+     elif col=='v_i_baseline':source='PRICE_'+mid;tid=T[col][0];scenario=S['production_cost_cny_per_tonne'][0];parents=[f'market_params.csv:{mid}:observed_price_cny_per_tonne',scenario];verify='pending_verification'
      else:source='STAT_'+mid if mid else 'NODE_S1'
     elif fn=='dc_params.csv':
      if col in ('warehouse_rent_cny_per_sqm_month','rent_status'):source='RENT_'+dc;role='observed' if col.startswith('warehouse') else 'identifier';verify='pending_verification'
-     elif col=='f_j_cny_per_year':source='RENT_'+dc;tid=T[col][0];scenario=S['warehouse_area_sqm'][0]+'|'+S['fixed_operating_multiplier'][0];parents=[f'dc_params:{dc}:warehouse_rent_cny_per_sqm_month'];verify='pending_verification'
+     elif col=='f_j_cny_per_year':source='RENT_'+dc;tid=T[col][0];scenario=S['warehouse_area_sqm'][0]+'|'+S['fixed_operating_multiplier'][0];parents=[f'dc_params.csv:{dc}:warehouse_rent_cny_per_sqm_month',S['warehouse_area_sqm'][0],S['fixed_operating_multiplier'][0]];verify='pending_verification'
      elif col in ('warehouse_area_sqm','fixed_operating_multiplier'):role='scenario';scenario=S[col][0]
      else:source='NODE_'+dc
     elif fn in ('inventory_params.csv','dc_emission_params.csv'):
@@ -44,8 +44,8 @@ def main():
      else:
       role='scenario';mapk={'F_j_cny_per_order':'F_j_cny_per_order','g_j_cny_per_order':'g_j_cny_per_order','h_cny_per_tonne_year':'holding_cost_h_cny_per_tonne_year','L_j_days':'lead_time_days','alpha':'alpha','z_alpha':'z_alpha','hat_f_j_tco2e_per_year':'fixed_dc_emission_tco2e_per_year','hat_h_tco2e_per_tonne_year':'inventory_emission_factor_tco2e_per_tonne_year'};scenario=S[mapk[col]][0]
     elif fn in ('supplier_dc.csv','dc_market.csv'):
-     if col=='road_distance_km':source='OSRM_CACHE_001';tid=T[col][0];parents=[f'NODE_{r.get("supplier_id",r.get("dc_id"))}',f'NODE_{r.get("dc_id",r.get("market_id"))}','OSRM_CACHE_001'];verify='pending_verification'
-     elif col=='transport_cost_baseline':tid=T[col][0];scenario=S['transport_rate_cny_per_tonne_km'][0];parents=[f'{fn}:{rec}:road_distance_km']
+     if col=='road_distance_km':source='OSRM_CACHE_001';tid=T[col][0];start=r.get('supplier_id') if fn=='supplier_dc.csv' else r.get('dc_id');end=r.get('dc_id') if fn=='supplier_dc.csv' else r.get('market_id');parents=[f'NODE_{start}',f'NODE_{end}','OSRM_CACHE_001'];verify='pending_verification'
+     elif col=='transport_cost_baseline':tid=T[col][0];scenario=S['transport_rate_cny_per_tonne_km'][0];parents=[f'{fn}:{rec}:road_distance_km',scenario]
      elif col.endswith('_id'):role='identifier';source='NODE_'+(r.get('dc_id') or r.get('supplier_id'))
     if not source and role=='derived':source='SCENARIO_ASSUMPTION'
     add(fn,rec,col,val,role,source,tid,scenario,parents,verify)
