@@ -2,6 +2,9 @@
 
 Version: **v0.1.0-preview**
 
+Maintainer: Zeyu Pei
+GitHub: [@peizeyuSEU](https://github.com/peizeyuSEU)
+
 This is a data-calibrated regional research dataset. It is not a disclosure of a firm's proprietary operating data. The repository documents the complete data lineage from source records and transparent assumptions to the processed dataset. It does not contain GA-BP optimization results. Model solution and computational experiments are maintained separately.
 
 ## Rebuild

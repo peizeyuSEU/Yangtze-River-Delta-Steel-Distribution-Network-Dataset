@@ -4,5 +4,6 @@ type: dataset
 version: 0.1.0-preview
 repository-code: https://github.com/peizeyuSEU/Yangtze-River-Delta-Steel-Distribution-Network-Dataset
 authors:
-  - family-names: Qi
-    given-names: Jianen
+  - family-names: "Pei"
+    given-names: "Zeyu"
+message: "If you use this dataset, please cite it using the metadata in this file."
