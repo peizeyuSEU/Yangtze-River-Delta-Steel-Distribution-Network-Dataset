@@ -1,8 +1,11 @@
-﻿transformation_id,formula,output_file,notes
-T_DEMAND_WEIGHT_001,weights/sum,demand_proxy.csv,city value / regional total
-T_MARKET_DEMAND_001,weight*regional_total,market_params.csv,demand_weight * 1000000
-T_DAILY_VARIANCE_001,(CV*mu/365)^2,market_params.csv,daily demand variance
-T_RESERVATION_PRICE_001,price-production_cost,market_params.csv,v_i
-T_DC_FIXED_COST_001,rent*12*area*mult,dc_params.csv,f_j
-T_TRANSPORT_COST_001,distance*rate,supplier_dc.csv;dc_market.csv,transport cost
-T_TRANSPORT_EMISSION_001,distance*factor,emission parameters,path emissions
+﻿transformation_id,transformation_name,input_fields,input_units,formula,output_file,output_unit,notes
+T_STRUCTURAL_ID,Structural identifiers,id fields,identifier,identity,all processed,identifier,implemented in scripts/build_all.py
+T_DEMAND_WEIGHT_001,Demand weight,second_industry_value,100m CNY,value/sum(values),market_params.csv:demand_weight,ratio,implemented in scripts/build_all.py
+T_MARKET_DEMAND_001,Annual demand,demand_weight;regional_total_demand,ratio;tonnes/year,weight*regional_total,market_params.csv:mu_annual_tonnes,tonnes/year,implemented in scripts/build_all.py
+T_DAILY_DEMAND_001,Daily demand,mu_annual_tonnes;operating_days,tonnes/year;day,annual/days,market_params.csv:mu_daily_tonnes,tonnes/day,implemented in scripts/build_all.py
+T_DAILY_VARIANCE_001,Daily variance,CV;mu_daily_tonnes,ratio;tonnes/day,(CV*mu_daily)^2,market_params.csv:sigma2_daily,(tonnes/day)^2,implemented in scripts/build_all.py
+T_RESERVATION_PRICE_001,Net retained price,market_price;production_cost,CNY/tonne,price-cost,market_params.csv:v_i_baseline,CNY/tonne,implemented in scripts/build_all.py
+T_DC_FIXED_COST_001,DC fixed cost,rent;months;area;multiplier,CNY/(m2*month);month;m2;ratio,rent*12*area*multiplier,dc_params.csv:f_j_cny_per_year,CNY/year,implemented in scripts/build_all.py
+T_OSRM_METRE_KM_001,OSRM metre to km,distance_m,m,distance_m/1000,supplier_dc.csv;dc_market.csv:road_distance_km,km,implemented in scripts/build_all.py
+T_TRANSPORT_COST_001,Transport cost,distance_km;rate,km;CNY/(tonne*km),distance*rate,supplier_dc.csv;dc_market.csv:transport_cost_baseline,CNY/tonne,implemented in scripts/build_all.py
+T_CONFIG_MAPPING_001,Configuration mapping,baseline.json,configuration,direct mapping,case_config.json,configuration,implemented in scripts/build_all.py
