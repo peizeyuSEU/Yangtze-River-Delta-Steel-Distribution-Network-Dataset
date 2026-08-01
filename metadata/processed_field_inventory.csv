@@ -1,43 +1,50 @@
-﻿file_name,column_name,data_type,unit,non_null_value_count,unique_value_count,current_source_type,lineage_coverage,identifier_field,notes
-nodes.csv,node_id,string,identifier,16,16,identifier,100%,true,
-nodes.csv,city,string,text,16,16,identifier,100%,true,
-nodes.csv,province,string,text,16,4,identifier,100%,true,
-nodes.csv,latitude,numeric,degree,16,16,derived,100%,false,
-nodes.csv,longitude,numeric,degree,16,16,derived,100%,false,
-nodes.csv,supplier_flag,numeric,flag,16,2,derived,100%,false,
-nodes.csv,candidate_dc_flag,numeric,flag,16,2,derived,100%,false,
-nodes.csv,market_flag,numeric,flag,16,2,derived,100%,false,
-market_params.csv,market_id,string,identifier,15,15,identifier,100%,true,
-market_params.csv,city,string,text,15,15,identifier,100%,true,
-market_params.csv,demand_weight,numeric,ratio,15,15,derived,100%,false,
-market_params.csv,mu_annual_tonnes,numeric,tonnes/year,15,15,derived,100%,false,
-market_params.csv,mu_daily_tonnes,numeric,tonnes/day,15,15,derived,100%,false,
-market_params.csv,sigma2_daily,numeric,(tonnes/day)^2,15,15,derived,100%,false,
-market_params.csv,observed_price_cny_per_tonne,numeric,CNY/tonne,15,15,proxy,100%,false,
-market_params.csv,v_i_baseline,numeric,CNY/tonne,15,15,derived,100%,false,
-market_params.csv,price_status,string,text,15,6,identifier,100%,true,
-dc_params.csv,dc_id,string,identifier,8,8,identifier,100%,true,
-dc_params.csv,city,string,text,8,8,identifier,100%,true,
-dc_params.csv,warehouse_rent_cny_per_sqm_month,numeric,CNY/(m2*month),8,7,observed,100%,false,
-dc_params.csv,warehouse_area_sqm,numeric,m2,8,1,scenario,100%,false,
-dc_params.csv,fixed_operating_multiplier,numeric,ratio,8,1,scenario,100%,false,
-dc_params.csv,f_j_cny_per_year,numeric,CNY/year,8,7,derived,100%,false,
-dc_params.csv,rent_status,string,text,8,2,identifier,100%,true,
-inventory_params.csv,dc_id,string,identifier,8,8,identifier,100%,true,
-inventory_params.csv,F_j_cny_per_order,numeric,CNY/order,8,1,scenario,100%,false,
-inventory_params.csv,g_j_cny_per_order,numeric,CNY/order,8,1,scenario,100%,false,
-inventory_params.csv,h_cny_per_tonne_year,numeric,CNY/(tonne*year),8,1,scenario,100%,false,
-inventory_params.csv,L_j_days,numeric,day,8,1,scenario,100%,false,
-inventory_params.csv,alpha,numeric,ratio,8,1,scenario,100%,false,
-inventory_params.csv,z_alpha,numeric,ratio,8,1,scenario,100%,false,
-dc_emission_params.csv,dc_id,string,identifier,8,8,identifier,100%,true,
-dc_emission_params.csv,hat_f_j_tco2e_per_year,numeric,tCO2e/year,8,1,scenario,100%,false,
-dc_emission_params.csv,hat_h_tco2e_per_tonne_year,numeric,tCO2e/(tonne*year),8,1,scenario,100%,false,
-supplier_dc.csv,supplier_id,string,identifier,8,1,identifier,100%,true,
-supplier_dc.csv,dc_id,string,identifier,8,8,identifier,100%,true,
-supplier_dc.csv,road_distance_km,numeric,km,8,8,derived,100%,false,
-supplier_dc.csv,transport_cost_baseline,numeric,CNY/tonne,8,8,derived,100%,false,
-dc_market.csv,dc_id,string,identifier,120,8,identifier,100%,true,
-dc_market.csv,market_id,string,identifier,120,15,identifier,100%,true,
-dc_market.csv,road_distance_km,numeric,km,120,113,derived,100%,false,
-dc_market.csv,transport_cost_baseline,numeric,CNY/tonne,120,113,derived,100%,false,
+﻿file_name,column_name,definition,data_type,unit,nullable,lineage_role,valid_range_or_domain,notes
+nodes.csv,node_id,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+nodes.csv,city,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+nodes.csv,province,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+nodes.csv,latitude,Processed output field,numeric,configuration,false,observed,non-negative where applicable,See record_lineage.csv
+nodes.csv,longitude,Processed output field,numeric,configuration,false,observed,non-negative where applicable,See record_lineage.csv
+nodes.csv,supplier_flag,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+nodes.csv,candidate_dc_flag,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+nodes.csv,market_flag,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+market_params.csv,market_id,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+market_params.csv,city,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+market_params.csv,demand_weight,Processed output field,numeric,ratio,false,derived,non-negative where applicable,See record_lineage.csv
+market_params.csv,mu_annual_tonnes,Processed output field,numeric,tonnes/year,false,derived,non-negative where applicable,See record_lineage.csv
+market_params.csv,mu_daily_tonnes,Processed output field,numeric,tonnes/day,false,derived,non-negative where applicable,See record_lineage.csv
+market_params.csv,sigma2_daily,Processed output field,numeric,(tonnes/day)^2,false,derived,non-negative where applicable,See record_lineage.csv
+market_params.csv,observed_price_cny_per_tonne,Processed output field,numeric,CNY/tonne,false,observed,non-negative where applicable,See record_lineage.csv
+market_params.csv,v_i_baseline,Processed output field,numeric,CNY/tonne,false,derived,non-negative where applicable,See record_lineage.csv
+market_params.csv,price_status,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+dc_params.csv,dc_id,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+dc_params.csv,city,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+dc_params.csv,warehouse_rent_cny_per_sqm_month,Processed output field,numeric,CNY/(m2*month),false,observed,non-negative where applicable,See record_lineage.csv
+dc_params.csv,warehouse_area_sqm,Processed output field,numeric,m2,false,scenario,non-negative where applicable,See record_lineage.csv
+dc_params.csv,fixed_operating_multiplier,Processed output field,numeric,ratio,false,scenario,non-negative where applicable,See record_lineage.csv
+dc_params.csv,f_j_cny_per_year,Processed output field,numeric,CNY/year,false,derived,non-negative where applicable,See record_lineage.csv
+dc_params.csv,rent_status,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+inventory_params.csv,dc_id,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+inventory_params.csv,F_j_cny_per_order,Processed output field,numeric,CNY/order,false,scenario,non-negative where applicable,See record_lineage.csv
+inventory_params.csv,g_j_cny_per_order,Processed output field,numeric,CNY/order,false,scenario,non-negative where applicable,See record_lineage.csv
+inventory_params.csv,h_cny_per_tonne_year,Processed output field,numeric,CNY/(tonne*year),false,scenario,non-negative where applicable,See record_lineage.csv
+inventory_params.csv,L_j_days,Processed output field,numeric,day,false,scenario,non-negative where applicable,See record_lineage.csv
+inventory_params.csv,alpha,Processed output field,numeric,ratio,false,scenario,non-negative where applicable,See record_lineage.csv
+inventory_params.csv,z_alpha,Processed output field,numeric,ratio,false,scenario,non-negative where applicable,See record_lineage.csv
+dc_emission_params.csv,dc_id,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+dc_emission_params.csv,hat_f_j_tco2e_per_year,Processed output field,numeric,tCO2e/year,false,scenario,non-negative where applicable,See record_lineage.csv
+dc_emission_params.csv,hat_h_tco2e_per_tonne_year,Processed output field,numeric,tCO2e/(tonne*year),false,scenario,non-negative where applicable,See record_lineage.csv
+supplier_dc.csv,supplier_id,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+supplier_dc.csv,dc_id,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+supplier_dc.csv,road_distance_km,Processed output field,numeric,km,false,derived,non-negative where applicable,See record_lineage.csv
+supplier_dc.csv,transport_cost_baseline,Processed output field,numeric,CNY/tonne,false,derived,non-negative where applicable,See record_lineage.csv
+dc_market.csv,dc_id,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+dc_market.csv,market_id,Processed output field,numeric,configuration,false,identifier,non-negative where applicable,See record_lineage.csv
+dc_market.csv,road_distance_km,Processed output field,numeric,km,false,derived,non-negative where applicable,See record_lineage.csv
+dc_market.csv,transport_cost_baseline,Processed output field,numeric,CNY/tonne,false,derived,non-negative where applicable,See record_lineage.csv
+case_config.json,version,Processed output field,numeric,configuration,false,structural,non-negative where applicable,See record_lineage.csv
+case_config.json,regional_total_annual_demand_tonnes,Processed output field,numeric,configuration,false,scenario,non-negative where applicable,See record_lineage.csv
+case_config.json,operating_days_per_year,Processed output field,numeric,configuration,false,scenario,non-negative where applicable,See record_lineage.csv
+case_config.json,demand_cv,Processed output field,numeric,configuration,false,scenario,non-negative where applicable,See record_lineage.csv
+case_config.json,transport_rate_cny_per_tonne_km,Processed output field,numeric,configuration,false,scenario,non-negative where applicable,See record_lineage.csv
+case_config.json,transport_emission_factor_tco2e_per_tonne_km,Processed output field,numeric,configuration,false,scenario,non-negative where applicable,See record_lineage.csv
+case_config.json,carbon_quota,Processed output field,numeric,configuration,false,scenario,non-negative where applicable,See record_lineage.csv

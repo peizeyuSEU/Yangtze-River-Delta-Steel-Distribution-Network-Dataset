@@ -1,43 +1,50 @@
 ﻿file_name,column_name,total_non_null_values,values_with_lineage,values_with_source_lineage,values_with_transformation_lineage,values_with_scenario_lineage,values_with_structural_lineage,unresolved_values,lineage_coverage_rate,provenance_verification_rate,status,notes
-nodes.csv,node_id,16,16,16,16,16,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-nodes.csv,city,16,16,16,16,16,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-nodes.csv,province,16,16,16,16,16,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-nodes.csv,latitude,16,16,16,16,16,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-nodes.csv,longitude,16,16,16,16,16,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-nodes.csv,supplier_flag,16,16,16,16,16,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-nodes.csv,candidate_dc_flag,16,16,16,16,16,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-nodes.csv,market_flag,16,16,16,16,16,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-market_params.csv,market_id,15,15,15,15,15,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-market_params.csv,city,15,15,15,15,15,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-market_params.csv,demand_weight,15,15,15,15,15,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-market_params.csv,mu_annual_tonnes,15,15,15,15,15,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-market_params.csv,mu_daily_tonnes,15,15,15,15,15,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-market_params.csv,sigma2_daily,15,15,15,15,15,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-market_params.csv,observed_price_cny_per_tonne,15,15,15,15,15,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-market_params.csv,v_i_baseline,15,15,15,15,15,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-market_params.csv,price_status,15,15,15,15,15,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_params.csv,dc_id,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_params.csv,city,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_params.csv,warehouse_rent_cny_per_sqm_month,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_params.csv,warehouse_area_sqm,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_params.csv,fixed_operating_multiplier,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_params.csv,f_j_cny_per_year,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_params.csv,rent_status,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-inventory_params.csv,dc_id,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-inventory_params.csv,F_j_cny_per_order,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-inventory_params.csv,g_j_cny_per_order,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-inventory_params.csv,h_cny_per_tonne_year,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-inventory_params.csv,L_j_days,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-inventory_params.csv,alpha,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-inventory_params.csv,z_alpha,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_emission_params.csv,dc_id,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_emission_params.csv,hat_f_j_tco2e_per_year,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_emission_params.csv,hat_h_tco2e_per_tonne_year,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-supplier_dc.csv,supplier_id,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-supplier_dc.csv,dc_id,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-supplier_dc.csv,road_distance_km,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-supplier_dc.csv,transport_cost_baseline,8,8,8,8,8,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_market.csv,dc_id,120,120,120,120,120,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_market.csv,market_id,120,120,120,120,120,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_market.csv,road_distance_km,120,120,120,120,120,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
-dc_market.csv,transport_cost_baseline,120,120,120,120,120,0,0,1.0,0.0,PASS_WITH_DOCUMENTED_GAPS,source verification pending
+nodes.csv,node_id,16,16,16,0,0,16,0,1.0,1.0,PASS,External verification may remain pending
+nodes.csv,city,16,16,16,0,0,16,0,1.0,1.0,PASS,External verification may remain pending
+nodes.csv,province,16,16,16,0,0,16,0,1.0,1.0,PASS,External verification may remain pending
+nodes.csv,latitude,16,16,16,0,0,0,0,1.0,1.0,PASS,External verification may remain pending
+nodes.csv,longitude,16,16,16,0,0,0,0,1.0,1.0,PASS,External verification may remain pending
+nodes.csv,supplier_flag,16,16,16,0,0,16,0,1.0,1.0,PASS,External verification may remain pending
+nodes.csv,candidate_dc_flag,16,16,16,0,0,16,0,1.0,1.0,PASS,External verification may remain pending
+nodes.csv,market_flag,16,16,16,0,0,16,0,1.0,1.0,PASS,External verification may remain pending
+market_params.csv,market_id,15,15,15,0,0,15,0,1.0,1.0,PASS,External verification may remain pending
+market_params.csv,city,15,15,15,0,0,15,0,1.0,1.0,PASS,External verification may remain pending
+market_params.csv,demand_weight,15,15,15,15,0,0,0,1.0,1.0,PASS,External verification may remain pending
+market_params.csv,mu_annual_tonnes,15,15,15,15,15,0,0,1.0,1.0,PASS,External verification may remain pending
+market_params.csv,mu_daily_tonnes,15,15,15,15,15,0,0,1.0,1.0,PASS,External verification may remain pending
+market_params.csv,sigma2_daily,15,15,15,15,15,0,0,1.0,1.0,PASS,External verification may remain pending
+market_params.csv,observed_price_cny_per_tonne,15,15,15,0,0,0,0,1.0,0.0,PASS,External verification may remain pending
+market_params.csv,v_i_baseline,15,15,15,15,15,0,0,1.0,0.0,PASS,External verification may remain pending
+market_params.csv,price_status,15,15,15,0,0,14,0,1.0,0.0,PASS,External verification may remain pending
+dc_params.csv,dc_id,8,8,8,0,0,8,0,1.0,1.0,PASS,External verification may remain pending
+dc_params.csv,city,8,8,8,0,0,8,0,1.0,1.0,PASS,External verification may remain pending
+dc_params.csv,warehouse_rent_cny_per_sqm_month,8,8,8,0,0,0,0,1.0,0.0,PASS,External verification may remain pending
+dc_params.csv,warehouse_area_sqm,8,8,0,0,8,0,0,1.0,1.0,PASS,External verification may remain pending
+dc_params.csv,fixed_operating_multiplier,8,8,0,0,8,0,0,1.0,1.0,PASS,External verification may remain pending
+dc_params.csv,f_j_cny_per_year,8,8,8,8,8,0,0,1.0,0.0,PASS,External verification may remain pending
+dc_params.csv,rent_status,8,8,8,0,0,8,0,1.0,0.0,PASS,External verification may remain pending
+inventory_params.csv,dc_id,8,8,8,0,0,8,0,1.0,1.0,PASS,External verification may remain pending
+inventory_params.csv,F_j_cny_per_order,8,8,0,0,8,0,0,1.0,1.0,PASS,External verification may remain pending
+inventory_params.csv,g_j_cny_per_order,8,8,0,0,8,0,0,1.0,1.0,PASS,External verification may remain pending
+inventory_params.csv,h_cny_per_tonne_year,8,8,0,0,8,0,0,1.0,1.0,PASS,External verification may remain pending
+inventory_params.csv,L_j_days,8,8,0,0,8,0,0,1.0,1.0,PASS,External verification may remain pending
+inventory_params.csv,alpha,8,8,0,0,8,0,0,1.0,1.0,PASS,External verification may remain pending
+inventory_params.csv,z_alpha,8,8,0,0,8,0,0,1.0,1.0,PASS,External verification may remain pending
+dc_emission_params.csv,dc_id,8,8,8,0,0,8,0,1.0,1.0,PASS,External verification may remain pending
+dc_emission_params.csv,hat_f_j_tco2e_per_year,8,8,0,0,8,0,0,1.0,1.0,PASS,External verification may remain pending
+dc_emission_params.csv,hat_h_tco2e_per_tonne_year,8,8,0,0,8,0,0,1.0,1.0,PASS,External verification may remain pending
+supplier_dc.csv,supplier_id,8,8,8,0,0,8,0,1.0,1.0,PASS,External verification may remain pending
+supplier_dc.csv,dc_id,8,8,8,0,0,8,0,1.0,1.0,PASS,External verification may remain pending
+supplier_dc.csv,road_distance_km,8,8,8,8,0,0,0,1.0,0.0,PASS,External verification may remain pending
+supplier_dc.csv,transport_cost_baseline,8,8,8,8,8,0,0,1.0,1.0,PASS,External verification may remain pending
+dc_market.csv,dc_id,120,120,120,0,0,120,0,1.0,1.0,PASS,External verification may remain pending
+dc_market.csv,market_id,120,120,120,0,0,120,0,1.0,1.0,PASS,External verification may remain pending
+dc_market.csv,road_distance_km,120,120,120,120,0,0,0,1.0,0.0,PASS,External verification may remain pending
+dc_market.csv,transport_cost_baseline,120,120,120,120,120,0,0,1.0,1.0,PASS,External verification may remain pending
+case_config.json,version,1,1,1,1,0,1,0,1.0,1.0,PASS,External verification may remain pending
+case_config.json,regional_total_annual_demand_tonnes,1,1,1,1,1,0,0,1.0,1.0,PASS,External verification may remain pending
+case_config.json,operating_days_per_year,1,1,1,1,1,0,0,1.0,1.0,PASS,External verification may remain pending
+case_config.json,demand_cv,1,1,1,1,1,0,0,1.0,1.0,PASS,External verification may remain pending
+case_config.json,transport_rate_cny_per_tonne_km,1,1,1,1,1,0,0,1.0,1.0,PASS,External verification may remain pending
+case_config.json,transport_emission_factor_tco2e_per_tonne_km,1,1,1,1,1,0,0,1.0,1.0,PASS,External verification may remain pending
+case_config.json,carbon_quota,1,1,1,1,1,0,0,1.0,1.0,PASS,External verification may remain pending
