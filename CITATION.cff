@@ -1,0 +1,8 @@
+cff-version: 1.2.0
+title: Yangtze River Delta Steel Distribution Network Dataset
+type: dataset
+version: 0.1.0-preview
+repository-code: https://github.com/peizeyuSEU/Yangtze-River-Delta-Steel-Distribution-Network-Dataset
+authors:
+  - family-names: Qi
+    given-names: Jianen

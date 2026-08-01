@@ -1,0 +1,1 @@
+OpenStreetMap/OSRM-derived road information requires OpenStreetMap attribution and applicable ODbL-related terms. Public source records are retained as structured citations only; no webpage copies are redistributed. Redistribution status remains review_required where licensing is uncertain.

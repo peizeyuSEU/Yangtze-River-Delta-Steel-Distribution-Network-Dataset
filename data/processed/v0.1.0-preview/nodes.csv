@@ -1,0 +1,17 @@
+﻿node_id,city,province,latitude,longitude,supplier_flag,candidate_dc_flag,market_flag
+S1,Ma'anshan,Anhui,31.6707,118.5061,1,0,0
+C01,Shanghai,Shanghai,31.2304,121.4737,0,1,1
+C02,Nanjing,Jiangsu,32.0603,118.7969,0,1,1
+C03,Suzhou,Jiangsu,31.2989,120.5853,0,1,1
+C04,Wuxi,Jiangsu,31.4912,120.3119,0,1,1
+C05,Hangzhou,Zhejiang,30.2741,120.1551,0,1,1
+C06,Ningbo,Zhejiang,29.8683,121.544,0,1,1
+C07,Hefei,Anhui,31.8206,117.2272,0,1,1
+C08,Jiaxing,Zhejiang,30.7461,120.7555,0,1,1
+M09,Changzhou,Jiangsu,31.8112,119.9741,0,0,1
+M10,Nantong,Jiangsu,31.9802,120.8943,0,0,1
+M11,Taizhou (Jiangsu),Jiangsu,32.4555,119.9255,0,0,1
+M12,Shaoxing,Zhejiang,30.0303,120.5821,0,0,1
+M13,Huzhou,Zhejiang,30.8943,120.0868,0,0,1
+M14,Wuhu,Anhui,31.3263,118.3765,0,0,1
+M15,Jinhua,Zhejiang,29.0792,119.6474,0,0,1

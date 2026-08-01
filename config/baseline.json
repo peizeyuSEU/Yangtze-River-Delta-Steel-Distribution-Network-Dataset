@@ -1,0 +1,1 @@
+{"version":"v0.1.0-preview","regional_total_demand_tonnes":1000000,"operating_days":365,"demand_cv":0.2,"transport_rate_cny_per_tonne_km":0.39,"osrm_cache":"data/cache/osrm_response.json","allow_network":false}

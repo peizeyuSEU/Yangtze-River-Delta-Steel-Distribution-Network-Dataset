@@ -1,0 +1,9 @@
+﻿dc_id,city,warehouse_rent_cny_per_sqm_month,rent_status,observation_period
+C01,Shanghai,35.8,city_average,2026-Q1
+C02,Nanjing,21.0,specific_listing,2026-07
+C03,Suzhou,22.5,city_average,2026-04
+C04,Wuxi,19.8,city_average,2026-04
+C05,Hangzhou,21.0,city_average,2026-07
+C06,Ningbo,22.2,city_average,2026-07
+C07,Hefei,17.0,specific_listing,2026-05-30
+C08,Jiaxing,15.0,city_average,2026-07

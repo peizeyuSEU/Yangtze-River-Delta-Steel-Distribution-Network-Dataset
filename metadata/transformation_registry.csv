@@ -1,0 +1,8 @@
+﻿transformation_id,formula,output_file,notes
+T_DEMAND_WEIGHT_001,weights/sum,demand_proxy.csv,city value / regional total
+T_MARKET_DEMAND_001,weight*regional_total,market_params.csv,demand_weight * 1000000
+T_DAILY_VARIANCE_001,(CV*mu/365)^2,market_params.csv,daily demand variance
+T_RESERVATION_PRICE_001,price-production_cost,market_params.csv,v_i
+T_DC_FIXED_COST_001,rent*12*area*mult,dc_params.csv,f_j
+T_TRANSPORT_COST_001,distance*rate,supplier_dc.csv;dc_market.csv,transport cost
+T_TRANSPORT_EMISSION_001,distance*factor,emission parameters,path emissions

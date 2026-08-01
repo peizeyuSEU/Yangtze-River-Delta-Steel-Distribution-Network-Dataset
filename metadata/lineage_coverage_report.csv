@@ -1,0 +1,2 @@
+﻿file_name,column_name,total_non_null_values,values_with_source_lineage,values_with_transformation_lineage,values_with_scenario_lineage,lineage_coverage_rate,status,notes
+market_params.csv,mu_annual_tonnes,15,15,15,15,1.0,PASS,

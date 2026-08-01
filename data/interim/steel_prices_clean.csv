@@ -1,0 +1,16 @@
+﻿market_id,city,price_cny_per_tonne,price_status,price_date,specification
+C01,Shanghai,3150,observed,2026-07-10,HRB400E Φ20
+C02,Nanjing,3350,observed,2026-07-10,HRB400E Φ20
+C03,Suzhou,3470,observed,2026-07-14,HRB400E Φ20
+C04,Wuxi,3340,observed_range_midpoint,2026-06-08,HRB400E Φ20
+C05,Hangzhou,3310,observed,2026-07-10,HRB400E Φ20
+C06,Ningbo,3140,observed_brand_specific,2026-07-15,HRB400E Φ20
+C07,Hefei,3360,observed,2026-07-10,HRB400E Φ20
+C08,Jiaxing,3440,observed,2026-06-30,HRB400E Φ20
+M09,Changzhou,3265,observed_range_midpoint,2026-06-08,HRB400E Φ20
+M10,Nantong,3320,observed,2026-07-10,HRB400E Φ20
+M11,Taizhou (Jiangsu),3240,observed_range_midpoint,2026-07-06,HRB400E Φ20
+M12,Shaoxing,3610,observed_older_date,2026-05-29,HRB400E Φ20
+M13,Huzhou,3260,observed_spec_band,2026-06-18,HRB400E Φ18-22
+M14,Wuhu,3220,observed,2026-07-10,HRB400E Φ20
+M15,Jinhua,3453.33,derived_proxy,,"mean(Hangzhou,Jiaxing,Shaoxing)"
