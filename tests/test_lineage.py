@@ -113,3 +113,22 @@ def test_price_source_verification_and_midpoint_disclosure():
  assert '(3240 + 3290) / 2 = 3265' in reg['PRICE_M09']['notes']
  assert '(3190 + 3290) / 2 = 3240' in reg['PRICE_M11']['notes']
  assert all(x['verification_checked_at']=='2026-08-02' for x in reg.values())
+
+def test_rent_source_verification_and_unit_conversions():
+ reg={x['source_record_id']:x for x in read(ROOT/'metadata/source_recovery_register.csv') if x['source_record_id'].startswith('RENT_')}
+ from collections import Counter
+ assert len(reg)==8
+ assert Counter(x['verification_status'] for x in reg.values())==Counter({'verified_exact':6,'pending_manual_review':2})
+ for k in ('RENT_C01','RENT_C03','RENT_C04','RENT_C05','RENT_C06','RENT_C08'):
+  assert reg[k]['verification_status']=='verified_exact'
+ for k in ('RENT_C02','RENT_C07'):
+  assert reg[k]['verification_status']=='pending_manual_review'
+ assert 'specific listing' in reg['RENT_C02']['observation_type'].lower()
+ assert 'specific high-standard listing' in reg['RENT_C07']['observation_type'].lower()
+ assert reg['RENT_C03']['source_url']=='https://su.58.com/cangku/'
+ assert reg['RENT_C03']['verification_evidence_url']=='https://su.58.com/fangjia/cangkuzujin/'
+ assert reg['RENT_C01']['verification_evidence_type']=='official_market_report_exact_match'
+ assert all(x['verification_checked_at']=='2026-08-02' for x in reg.values())
+ assert all(x['recovered_value'] for x in reg.values())
+ daily={'C03':0.75,'C04':0.66,'C05':0.70,'C06':0.74,'C08':0.50}
+ for did, value in daily.items(): assert abs(float(reg['RENT_'+did]['recovered_value'])-value*30)<1e-9

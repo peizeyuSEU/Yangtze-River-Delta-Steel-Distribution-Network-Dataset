@@ -67,6 +67,20 @@ PRICE_M15 remains a proxy: its value is constructed from PRICE_C05,
 PRICE_C08, and PRICE_M12; the linked page is supporting context and not a
 direct Jinhua quotation.
 
+### Warehouse-rent records (8)
+
+The 2026-08-02 review records 6 `verified_exact`, 0
+`verified_page_but_value_unavailable`, 0 `blocked`, 0 `dead_link`, 0
+`content_changed`, and 2 `pending_manual_review`; no numeric mismatch was
+found. RENT_C01 is a CBRE Shanghai citywide logistics-market average. RENT_C03,
+RENT_C04, RENT_C05, RENT_C06, and RENT_C08 are 58.com city-average trend
+observations; they are not transaction rents. Their monthly values are the
+stated 30-day conversions from the daily values (0.75→22.5, 0.66→19.8,
+0.70→21, 0.74→22.2, and 0.50→15 CNY/m²/month). RENT_C02 remains a specific
+Nanjing listing and RENT_C07 remains a Feixi high-standard listing; both need
+manual browser or historical-snapshot confirmation and must not be described
+as city averages. All rent values remain screening/calibration inputs.
+
 ## Explicit proxy and licensing notes
 
 - `PRICE_M15` remains a proxy constructed from Hangzhou, Jiaxing, and Shaoxing

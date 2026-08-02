@@ -72,6 +72,16 @@ def main():
         "M14": ("pending_manual_review", "", "The city quotation page is retained; automated review did not reliably expose the historical Wuhu row, so city/date/spec/brand/value need manual confirmation."),
         "M15": ("verified_page_but_value_unavailable", "", "Jinhua value is a geographic proxy constructed from Hangzhou, Jiaxing and Shaoxing screening observations; the linked page is supporting context, not a direct Jinhua quotation."),
     }
+    rent_status = {
+        "C01": ("verified_exact", "https://www.cbre.com.cn/insights/figures/shanghai-real-estate-marketview-q1-2026", "official_market_report_exact_match", "CBRE Shanghai Figures Q1 2026 directly reports citywide average logistics rent of 35.8 RMB per sq. m. per month."),
+        "C02": ("pending_manual_review", "", "original_listing_not_independently_retrievable", "The original Nanjing 58.com listing URL is retained, but the listing ID was not independently retrievable through current search or indexed snapshots. The recorded 0.7 CNY/m2/day and 21 CNY/m2/month remain provisional listing-based screening values."),
+        "C03": ("verified_exact", "https://su.58.com/fangjia/cangkuzujin/", "platform_city_average_exact_match", "The 58.com Suzhou warehouse-rent trend page reports 0.75 CNY/m2/day for April 2026; the recorded monthly value is the stated 30-day conversion, 0.75 x 30 = 22.5 CNY/m2/month."),
+        "C04": ("verified_exact", "https://wx.58.com/fangjia/cangkuzujin/", "platform_city_average_exact_match", "The 58.com Wuxi warehouse-rent trend page reports 0.66 CNY/m2/day for April 2026; 0.66 x 30 = 19.8 CNY/m2/month."),
+        "C05": ("verified_exact", "https://hz.58.com/fangjia/cangkuzujin/", "platform_city_average_exact_match", "The 58.com Hangzhou warehouse-rent trend page reports 0.70 CNY/m2/day for July 2026; 0.70 x 30 = 21 CNY/m2/month."),
+        "C06": ("verified_exact", "https://nb.58.com/fangjia/cangkuzujin/", "platform_city_average_exact_match", "The 58.com Ningbo warehouse-rent trend page reports 0.74 CNY/m2/day for July 2026; 0.74 x 30 = 22.2 CNY/m2/month."),
+        "C07": ("pending_manual_review", "", "original_listing_not_independently_retrievable", "The original Feixi high-standard warehouse listing remains unavailable for independent page-level confirmation. The recorded 17 CNY/m2/month remains a provisional listing-based screening value and must not be described as a Hefei city average."),
+        "C08": ("verified_exact", "https://jx.58.com/fangjia/cangkuzujin/", "platform_city_average_exact_match", "The 58.com Jiaxing warehouse-rent trend page reports 0.50 CNY/m2/day for July 2026; 0.50 x 30 = 15 CNY/m2/month."),
+    }
 
     def verification(entity, default="pending_manual_review"):
         status, evidence, note = stat_status.get(entity, (default, "", ""))
@@ -131,6 +141,7 @@ def main():
 
     for rowno, r in rows(wb["Warehouse_Rents_Observed"], 4):
         did, city = s(r.get("DC ID")), s(r.get("City"))
+        rstatus, revidence, rtype, rnote = rent_status[did]
         out.append({"source_record_id": f"RENT_{did}", "entity_id": did, "city": city,
             "variable_name": "warehouse_rent_cny_per_sqm_month", "recovered_value": s(r.get("Monthly rent\n(CNY/m²/month)")),
             "recovered_unit": "CNY/m²/month", "source_url": s(r.get("Source URL")),
@@ -139,7 +150,7 @@ def main():
             "observation_type": s(r.get("Observation type")), "proxy_flag": "true",
             "original_workbook": wb_name, "original_sheet": "Warehouse_Rents_Observed", "original_row": rowno,
             "workbook_sha256": digest, "recovery_status": "recovered",
-            "verification_status": "pending_manual_review", "verification_checked_at": "", "verification_evidence_url": "", "verification_evidence_type": "", "verification_note": "",
+            "verification_status": rstatus, "verification_checked_at": "2026-08-02", "verification_evidence_url": revidence, "verification_evidence_type": rtype, "verification_note": rnote,
             "notes": s(r.get("Notes"))})
 
     out_dir = args.repo_root / "metadata"
