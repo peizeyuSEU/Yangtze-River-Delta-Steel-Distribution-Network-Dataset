@@ -24,3 +24,12 @@ The default build is offline and reads `data/cache/osrm_response.json`. Network 
 4. Nanjing DC cost: `RENT_C02` → 12 months × 10,000 m² × 1.20 → `dc_params.csv:C02.f_j_cny_per_year`.
 
 The network contains one supplier (Ma'anshan), eight candidate DCs, and fifteen markets. Coordinates represent city-centre points, not enterprise warehouse addresses. Jinhua price is a proxy; some rents are listing-based; transport rates, warehouse area, energy intensity, and production costs are transparent calibration/scenario assumptions. Carbon quota `C` is not generated in this preview.
+
+## Public-source recovery
+
+Record-level source URLs recovered from the calibration workbook are listed in
+[`metadata/source_recovery_register.csv`](metadata/source_recovery_register.csv),
+with the verification limits and proxy disclosures in
+[`docs/source_verification_report.md`](docs/source_verification_report.md).
+GeoNames coordinate provenance, OSRM routing, and OSM map attribution are kept
+as separate source categories.

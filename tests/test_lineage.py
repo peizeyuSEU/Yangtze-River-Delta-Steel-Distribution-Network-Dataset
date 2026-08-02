@@ -60,3 +60,25 @@ def test_representative_formulas():
  a=next(x for x in sd if x['dc_id']=='C01'); assert abs(float(a['transport_cost_baseline'])-float(a['road_distance_km'])*cfg['transport_rate_cny_per_tonne_km'])<5e-4; b=next(x for x in dm if x['dc_id']=='C01' and x['market_id']=='M09'); assert abs(float(b['transport_cost_baseline'])-float(b['road_distance_km'])*cfg['transport_rate_cny_per_tonne_km'])<5e-4
 def test_no_forbidden_content():
  text='\n'.join(p.read_text(errors='ignore') for p in ROOT.rglob('*') if p.is_file() and '.git' not in p.parts and '.venv' not in p.parts and '.pytest_cache' not in p.parts and '__pycache__' not in p.parts and p.name!='test_lineage.py'); assert not re.search(r'BEGIN (RSA|OPENSSH) PRIVATE KEY|ghp_[A-Za-z0-9]+|password=',text,re.I); assert not any(x in text for x in ('no_investment_results.csv','delta_screening_results.csv','adapter_screening_only'))
+
+def test_recovered_public_source_register_is_complete():
+ reg=read(ROOT/'metadata/source_recovery_register.csv'); assert len(reg)==54
+ assert len({x['source_record_id'] for x in reg})==54
+ assert all(x['original_workbook']=='长三角钢材配送案例_公开数据校准包_v2.xlsx' for x in reg)
+ assert all(x['workbook_sha256']=='DA93615FF0A440843378A1763600FC5EEEE0C570585A2811B7188782D234F91B' for x in reg)
+ assert all(x['original_sheet'] in {'Nodes','Market_Proxy','Steel_Prices_Observed','Warehouse_Rents_Observed'} for x in reg)
+ assert all(x['source_url'].startswith('http') for x in reg)
+
+def test_recovered_source_foreign_keys_and_proxy_disclosure():
+ reg={x['source_record_id']:x for x in read(ROOT/'metadata/source_recovery_register.csv')}
+ src={x['source_record_id']:x for x in read(ROOT/'data/source_records/source_records.csv')}
+ assert set(reg).issubset(src)
+ assert reg['PRICE_M15']['proxy_flag']=='true'
+ assert 'PRICE_C05' in reg['PRICE_M15']['notes'] and 'PRICE_C08' in reg['PRICE_M15']['notes'] and 'PRICE_M12' in reg['PRICE_M15']['notes']
+ assert reg['NODE_S1']['source_url']=='https://www.geonames.org/'
+ assert all(reg[k]['source_url'] for k in reg if k.startswith(('STAT_','PRICE_','RENT_')))
+
+def test_source_verification_status_enum_and_no_workbook_copy():
+ allowed={'verified_exact','verified_metadata_only','verified_page_but_value_unavailable','blocked','dead_link','content_changed','pending_manual_review'}
+ reg=read(ROOT/'metadata/source_recovery_register.csv'); assert all(x['verification_status'] in allowed for x in reg)
+ assert not list(ROOT.rglob('长三角钢材配送案例_公开数据校准包_v2.xlsx'))

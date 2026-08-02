@@ -1,0 +1,42 @@
+# Original public-source recovery report
+
+This report records the recovery of source URLs and source metadata from
+`长三角钢材配送案例_公开数据校准包_v2.xlsx` (SHA-256
+`DA93615FF0A440843378A1763600FC5EEEE0C570585A2811B7188782D234F91B`). The
+workbook remains outside the repository; only its record-level provenance is
+stored in `metadata/source_recovery_register.csv`.
+
+## Scope
+
+- 16 city-centre coordinate records (`NODE_*`), with GeoNames as the stated
+  coordinate source. These are screening coordinates, not enterprise addresses.
+- 15 statistical proxy records (`STAT_*`) used to construct demand weights.
+- 15 steel-price records (`PRICE_*`) used for screening values.
+- 8 warehouse-rent records (`RENT_*`) used for screening values.
+
+All 54 records have a recovered URL or an explicit public-source endpoint in
+the register. The URLs are retained as metadata only; no webpage copies,
+screenshots, credentials, or external content are redistributed.
+
+## Verification status
+
+`verified_metadata_only` is used where the workbook identifies a stable
+publisher endpoint but the value itself is a structured workbook observation.
+`pending_manual_review` is used for record-level statistics, price, and rent
+pages whose current content, access controls, or historical snapshot still
+requires human confirmation. The Jinhua (`M15`) page is recorded as
+`verified_page_but_value_unavailable`: it is a page reference, not a direct
+Jinhua price observation.
+
+The register is intentionally conservative. HTTP reachability alone is not
+treated as proof that a historical value is still visible or unchanged.
+
+## Explicit proxy and licensing notes
+
+- `PRICE_M15` remains a proxy constructed from Hangzhou, Jiaxing, and Shaoxing
+  screening observations. It must not be described as an observed Jinhua quote.
+- City statistics, steel quotations, and warehouse listings may have publisher
+  terms that change. Review those terms before redistribution or commercial use.
+- GeoNames data are attributed separately from OSRM routing and OSM map data;
+  these sources must not be conflated.
+
