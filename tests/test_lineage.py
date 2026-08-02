@@ -182,3 +182,16 @@ def test_observation_comparability_audit_is_complete_and_offline():
  assert all(next(x for x in p if x['source_record_id']==k)['observation_form']=='range_midpoint' for k in ('PRICE_C04','PRICE_M09','PRICE_M11'))
  assert int(next(x for x in p if x['source_record_id']=='PRICE_C03')['date_offset_from_reference'])==4
  assert before=={f:hashlib.sha256((ROOT/'data/processed/v0.1.0-preview'/f).read_bytes()).hexdigest() for f in files}; assert len(read(ROOT/'metadata/record_lineage.csv'))==918
+
+def test_third_party_inventory_and_attribution_audit_is_offline():
+ import hashlib,subprocess,sys
+ files=('case_config.json','dc_emission_params.csv','dc_market.csv','dc_params.csv','inventory_params.csv','market_params.csv','nodes.csv','supplier_dc.csv')
+ before={f:hashlib.sha256((ROOT/'data/processed/v0.1.0-preview'/f).read_bytes()).hexdigest() for f in files}
+ q=subprocess.run([sys.executable,str(ROOT/'scripts/audit_third_party_attribution.py')],capture_output=True,text=True); assert q.returncode==0,q.stderr
+ inv=read(ROOT/'metadata/third_party_data_inventory.csv'); ids={x['third_party_id'] for x in inv}; assert {'SRC_GEONAMES_DATA','SRC_OSM_DATA','SRC_OSRM_SOFTWARE','SRC_OSRM_DEMO_SERVICE','SRC_OSRM_CACHE','SRC_CITY_STATISTICS','SRC_STEEL_PRICE_PAGES','SRC_WAREHOUSE_RENT_PAGES'}<=ids
+ assert next(x for x in inv if x['third_party_id']=='SRC_GEONAMES_DATA')['license_name']=='Creative Commons Attribution'
+ assert next(x for x in inv if x['third_party_id']=='SRC_OSM_DATA')['license_name']=='Open Data Commons Open Database License'
+ assert next(x for x in inv if x['third_party_id']=='SRC_OSRM_SOFTWARE')['license_name']=='BSD-2-Clause'
+ audit=read(ROOT/'metadata/third_party_attribution_audit.csv'); assert audit and not any(x['status']=='failed' for x in audit)
+ text=(ROOT/'README.md').read_text(encoding='utf-8')+(ROOT/'THIRD_PARTY_NOTICES.md').read_text(encoding='utf-8')+(ROOT/'docs/third_party_data_and_attribution.md').read_text(encoding='utf-8'); assert 'GeoNames' in text and 'CC BY 4.0' in text and 'OpenStreetMap contributors' in text and 'ODbL' in text and 'BSD-2-Clause' in text
+ assert before=={f:hashlib.sha256((ROOT/'data/processed/v0.1.0-preview'/f).read_bytes()).hexdigest() for f in files}; assert len(read(ROOT/'metadata/record_lineage.csv'))==918

@@ -12,3 +12,9 @@ Machine lineage is complete for the generated processed fields, but external sou
 
 The recovery workbook is documented in `docs/source_verification_report.md`. It
 was not copied into this repository.
+
+Third-party provenance status: GeoNames CC BY 4.0 and OSRM BSD-2-Clause are
+identified and documented. OpenStreetMap ODbL attribution is documented; the
+legal classification of the cached distance matrix as Produced Work or Derived
+Database remains a conservative scope review. No blanket repository
+relicensing is asserted.

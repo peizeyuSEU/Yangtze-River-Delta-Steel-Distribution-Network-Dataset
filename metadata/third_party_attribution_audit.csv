@@ -1,0 +1,12 @@
+﻿check_id,status,message
+TP-001,passed,required third-party components present
+TP-002,passed,GeoNames CC BY 4.0
+TP-003,passed,OSM ODbL 1.0
+TP-004,passed,OSRM BSD-2-Clause
+TP-005,passed,GeoNames attribution text
+TP-006,passed,OSM attribution text
+TP-007,passed,OSRM distinction
+TP-008,passed,web sources remain factual extraction only
+TP-009,passed,OSM/OSRM derived-output scope review retained
+TP-010,passed,no blanket relicensing
+TP-011,passed,original source URLs remain present

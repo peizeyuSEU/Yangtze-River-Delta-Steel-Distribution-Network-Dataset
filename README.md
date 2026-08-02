@@ -33,3 +33,14 @@ with the verification limits and proxy disclosures in
 [`docs/source_verification_report.md`](docs/source_verification_report.md).
 GeoNames coordinate provenance, OSRM routing, and OSM map attribution are kept
 as separate source categories.
+
+## Third-party data and attribution
+
+GeoNames coordinates: CC BY 4.0. Road-network distances: OSRM using map data
+from OpenStreetMap contributors, ODbL. Project OSRM software is separately
+licensed under BSD-2-Clause. See
+[`metadata/third_party_data_inventory.csv`](metadata/third_party_data_inventory.csv),
+[`docs/third_party_data_and_attribution.md`](docs/third_party_data_and_attribution.md),
+and [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). Public statistics,
+steel-price, and warehouse-rent pages are used for factual extraction only;
+publisher terms continue to apply and no full webpages are redistributed.
