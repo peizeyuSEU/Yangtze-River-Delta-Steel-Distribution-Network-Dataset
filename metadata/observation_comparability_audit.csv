@@ -1,0 +1,24 @@
+﻿source_record_id,market_id,dc_id,city,observation_date_or_period,product,grade,diameter_or_specification,brand_or_mill,observation_form,original_low,original_high,recovered_value,value_unit,verification_status,source_quality,date_offset_from_reference,comparable_to_reference,comparability_reason,daily_or_monthly_basis,conversion_rule
+PRICE_C01,C01,,Shanghai,2026-07-10,Rebar,HRB400E,Φ20,,direct_point,3150,3150,3150,CNY/t,verified_exact,Comparable city quotation,0,high,same grade/specification and date within comparison window,,
+PRICE_C02,C02,,Nanjing,2026-07-10,Rebar,HRB400E,Φ20,,direct_point,3350,3350,3350,CNY/t,verified_exact,Comparable city quotation,0,high,same grade/specification and date within comparison window,,
+PRICE_C03,C03,,Suzhou,2026-07-14,Rebar,HRB400E,Φ20,,direct_point,3470,3470,3470,CNY/t,verified_exact,City quotation; different date/source,4,high,same grade/specification and date within comparison window,,
+PRICE_C04,C04,,Wuxi,2026-06-08,Rebar,HRB400E,Φ20,,range_midpoint,3310,3370,3340,CNY/t,verified_page_but_value_unavailable,Range midpoint,-32,low,date is more than 30 days from 2026-07-10,,
+PRICE_C05,C05,,Hangzhou,2026-07-10,Rebar,HRB400E,Φ20,,direct_point,3310,3310,3310,CNY/t,verified_exact,Comparable city quotation,0,high,same grade/specification and date within comparison window,,
+PRICE_C06,C06,,Ningbo,2026-07-15,Rebar,HRB400E,Φ20,Zhongtian,direct_point,3140,3140,3140,CNY/t,verified_exact,Brand-specific city quotation,5,high,same grade/specification and date within comparison window,,
+PRICE_C07,C07,,Hefei,2026-07-10,Rebar,HRB400E,Φ20,,direct_point,3360,3360,3360,CNY/t,verified_exact,Comparable city quotation,0,high,same grade/specification and date within comparison window,,
+PRICE_C08,C08,,Jiaxing,2026-06-30,Rebar,HRB400E,Φ20,,direct_point,3440,3440,3440,CNY/t,verified_exact,City quotation; different date/source,-10,moderate,same grade/specification and date within comparison window,,
+PRICE_M09,M09,,Changzhou,2026-06-08,Rebar,HRB400E,Φ20,,range_midpoint,3240,3290,3265,CNY/t,verified_exact,Range midpoint,-32,low,date is more than 30 days from 2026-07-10,,
+PRICE_M10,M10,,Nantong,2026-07-10,Rebar,HRB400E,Φ20,,direct_point,3320,3320,3320,CNY/t,verified_exact,Comparable city quotation,0,high,same grade/specification and date within comparison window,,
+PRICE_M11,M11,,Taizhou (Jiangsu),2026-07-06,Rebar,HRB400E,Φ20,,range_midpoint,3190,3290,3240,CNY/t,verified_exact,Range midpoint,-4,high,same grade/specification and date within comparison window,,
+PRICE_M12,M12,,Shaoxing,2026-05-29,Rebar,HRB400E,Φ20,,direct_point,3610,3610,3610,CNY/t,pending_manual_review,Older screening observation,-42,low,date is more than 30 days from 2026-07-10,,
+PRICE_M13,M13,,Huzhou,2026-06-18,Rebar,HRB400E,Φ18-22,,direct_point,3260,3260,3260,CNY/t,verified_page_but_value_unavailable,Broader diameter category includes Φ20,-22,moderate,specification band includes Phi20 rather than exact Phi20,,
+PRICE_M14,M14,,Wuhu,2026-07-10,Rebar,HRB400E,Φ20,Anhui Changjiang,direct_point,3220,3220,3220,CNY/t,verified_exact,Comparable city quotation,0,high,same grade/specification and date within comparison window,,
+PRICE_M15,M15,,Jinhua,,Rebar,,"mean(Hangzhou,Jiaxing,Shaoxing)",,geographic_proxy,,,3453.33,CNY/t,verified_page_but_value_unavailable,Price page exists but visible value unavailable,,low,geographic proxy; not a direct city quotation,,
+RENT_C01,,C01,Shanghai,2026-Q1,,,,,city_average,,,35.8,CNY/m2/month,verified_exact,High,,moderate,city average with Q1/Q2 timing or daily-to-monthly 30-day conversion,monthly,monthly observed
+RENT_C02,,C02,Nanjing,2026-07,,,,,specific_listing,,,21.0,CNY/m2/month,pending_manual_review,Low–medium,,low,specific listing; not a city average,monthly,monthly observed
+RENT_C03,,C03,Suzhou,2026-04,,,,,city_average,,,22.5,CNY/m2/month,verified_exact,Medium,,moderate,city average with Q1/Q2 timing or daily-to-monthly 30-day conversion,daily,daily x 30
+RENT_C04,,C04,Wuxi,2026-04,,,,,city_average,,,19.8,CNY/m2/month,verified_exact,Medium,,moderate,city average with Q1/Q2 timing or daily-to-monthly 30-day conversion,daily,daily x 30
+RENT_C05,,C05,Hangzhou,2026-07,,,,,city_average,,,21.0,CNY/m2/month,verified_exact,Medium,,high,city average in July 2026 with exact verification,daily,daily x 30
+RENT_C06,,C06,Ningbo,2026-07,,,,,city_average,,,22.2,CNY/m2/month,verified_exact,Medium,,high,city average in July 2026 with exact verification,daily,daily x 30
+RENT_C07,,C07,Hefei,2026-05-30,,,,,high_standard_specific_listing,,,17.0,CNY/m2/month,pending_manual_review,Low–medium,,low,specific listing; not a city average,monthly,monthly observed
+RENT_C08,,C08,Jiaxing,2026-07,,,,,city_average,,,15.0,CNY/m2/month,verified_exact,Medium,,high,city average in July 2026 with exact verification,daily,daily x 30

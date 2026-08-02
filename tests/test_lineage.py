@@ -168,3 +168,17 @@ def test_intracity_zero_distance_sensitivity_is_offline_and_non_mutating():
  for key in ('C01','C02','C03','C04','C05','C06','C07','C08'):
   vals=[float(x['delta_annual_cost']) for x in rows if x['dc_id']==key]; assert vals==sorted(vals)
  assert before=={f:hashlib.sha256((ROOT/'data/processed/v0.1.0-preview'/f).read_bytes()).hexdigest() for f in files}; assert len(read(ROOT/'metadata/record_lineage.csv'))==918
+
+def test_observation_comparability_audit_is_complete_and_offline():
+ import hashlib,subprocess,sys
+ files=('case_config.json','dc_emission_params.csv','dc_market.csv','dc_params.csv','inventory_params.csv','market_params.csv','nodes.csv','supplier_dc.csv')
+ before={f:hashlib.sha256((ROOT/'data/processed/v0.1.0-preview'/f).read_bytes()).hexdigest() for f in files}
+ q=subprocess.run([sys.executable,str(ROOT/'scripts/audit_observation_comparability.py')],capture_output=True,text=True); assert q.returncode==0,q.stderr
+ rows=read(ROOT/'metadata/observation_comparability_audit.csv'); assert len(rows)==23
+ p=[x for x in rows if x['source_record_id'].startswith('PRICE_')]; r=[x for x in rows if x['source_record_id'].startswith('RENT_')]; assert len(p)==15 and len(r)==8
+ assert all(x['comparable_to_reference'] in {'high','moderate','low'} for x in rows)
+ assert next(x for x in p if x['source_record_id']=='PRICE_M15')['comparable_to_reference']=='low'; assert next(x for x in p if x['source_record_id']=='PRICE_M15')['observation_form']=='geographic_proxy'
+ assert all(next(x for x in r if x['source_record_id']==k)['comparable_to_reference']=='low' for k in ('RENT_C02','RENT_C07'))
+ assert all(next(x for x in p if x['source_record_id']==k)['observation_form']=='range_midpoint' for k in ('PRICE_C04','PRICE_M09','PRICE_M11'))
+ assert int(next(x for x in p if x['source_record_id']=='PRICE_C03')['date_offset_from_reference'])==4
+ assert before=={f:hashlib.sha256((ROOT/'data/processed/v0.1.0-preview'/f).read_bytes()).hexdigest() for f in files}; assert len(read(ROOT/'metadata/record_lineage.csv'))==918
