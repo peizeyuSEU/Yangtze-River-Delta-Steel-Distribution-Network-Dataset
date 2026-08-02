@@ -44,3 +44,9 @@ licensed under BSD-2-Clause. See
 and [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md). Public statistics,
 steel-price, and warehouse-rent pages are used for factual extraction only;
 publisher terms continue to apply and no full webpages are redistributed.
+
+## Release and limitations
+
+See the [dataset card](DATASET_CARD.md), [release readiness](docs/release_readiness.md), [open issues](metadata/open_issues_register.csv), and [carbon-quota protocol](docs/carbon_quota_generation_protocol.md). The preview has no DOI assigned. Formal licensed release and carbon-quota-dependent model execution remain blocked as documented.
+
+Audits: [data quality](docs/data_quality_audit.md), [observation comparability](docs/observation_comparability_audit.md), [third-party attribution](docs/third_party_attribution_audit.md), and [release readiness](docs/release_readiness_audit.md).

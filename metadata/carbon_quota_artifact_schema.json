@@ -1,0 +1,6 @@
+{
+  "required": ["artifact_version","dataset_version","dataset_commit","processed_manifest_sha256","model_repository","model_commit","model_identifier","baseline_scenario","emission_definition","e0_value","e0_unit","quota_rule","quota_multiplier","carbon_quota_value","carbon_quota_unit","solver_name","solver_version","solver_status","generated_at","generated_by","input_hashes","output_hashes"],
+  "solver_status_allowed": ["optimal","feasible","complete","validated"],
+  "numeric_constraints": {"e0_value": "finite_nonnegative", "quota_multiplier": "finite_nonnegative", "carbon_quota_value": "finite_nonnegative"},
+  "hash_format": "64 lowercase or uppercase hexadecimal characters"
+}

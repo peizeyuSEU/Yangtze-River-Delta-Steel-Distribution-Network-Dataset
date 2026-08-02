@@ -1,20 +1,5 @@
-# Provenance gaps and review actions
+# Provenance gaps and release boundaries
 
-| gap_id | variables/records | current treatment | risk | next action |
-|---|---|---|---|---|
-| GAP-001 | city statistics, steel prices, rents | record-level URLs recovered in `metadata/source_recovery_register.csv` | historical pages and terms still require manual confirmation | verify each page/value before a public release |
-| GAP-002 | Jinhua steel price | explicit proxy flag | not a direct Jinhua observation | document proxy basis and review suitability |
-| GAP-003 | warehouse rents | listing-based records | listing license/status may change | manually review listing provenance |
-| GAP-004 | OSRM/OSM cache | cached response and derived distances | attribution/ODbL review required | confirm attribution and redistribution terms |
-| GAP-005 | carbon quota C | not generated | requires future E0 model solve | keep as not_yet_generated; do not invent value |
+The authoritative issue list is [`metadata/open_issues_register.csv`](../metadata/open_issues_register.csv). Resolved items include attribution, comparability, the Jinhua proxy disclosure, and the eight same-city sensitivity analysis. Partially resolved items are the Jiaxing PDF, unavailable price pages, listing rents, OSM/OSRM derived-output scope, and OSRM demo terms. Open items are repository licensing and the externally generated carbon quota.
 
-Machine lineage is complete for the generated processed fields, but external source verification is not complete.
-
-The recovery workbook is documented in `docs/source_verification_report.md`. It
-was not copied into this repository.
-
-Third-party provenance status: GeoNames CC BY 4.0 and OSRM BSD-2-Clause are
-identified and documented. OpenStreetMap ODbL attribution is documented; the
-legal classification of the cached distance matrix as Produced Work or Derived
-Database remains a conservative scope review. No blanket repository
-relicensing is asserted.
+The dataset is suitable for a public preview despite non-blocking limitations. Formal licensed release remains blocked by repository licensing and OSM/OSRM scope review. Carbon-quota-dependent model execution remains blocked until an external model produces a validated artifact. These boundaries do not alter processed values or lineage.

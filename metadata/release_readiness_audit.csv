@@ -1,0 +1,12 @@
+﻿check_id,status,message
+REL-001,passed,8 processed files exist
+REL-002,passed,lineage rows 918
+REL-003,passed,processed non-empty values 918
+REL-004,passed,data quality audit present
+REL-005,passed,comparability audit present
+REL-006,passed,third-party audit no failed
+REL-007,passed,open issue register present
+REL-008,passed,preview blockers count 0
+REL-009,passed,formal blockers listed
+REL-010,passed,model-execution blockers listed
+REL-011,passed,carbon quota not generated

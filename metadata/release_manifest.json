@@ -1,0 +1,96 @@
+{
+  "dataset_name": "Yangtze River Delta Steel Distribution Network Dataset",
+  "version": "0.1.0-preview",
+  "manifest_basis_commit": "be66a0936672058e0325e84a369a3954409d237b",
+  "generated_at": "2026-08-02",
+  "processed_files": [
+    {
+      "path": "data/processed/v0.1.0-preview/case_config.json",
+      "sha256": "bec13b33d8b03c1cf3afbfd6a0c3a41b56389beece99eba489bfc985fbcf37a9",
+      "rows": 0,
+      "columns": null
+    },
+    {
+      "path": "data/processed/v0.1.0-preview/dc_emission_params.csv",
+      "sha256": "6e79e08b47a60e73b3b74a9ad70627d3300010b96df51bd00438c19c5b2cdcb8",
+      "rows": 8,
+      "columns": 3
+    },
+    {
+      "path": "data/processed/v0.1.0-preview/dc_market.csv",
+      "sha256": "00190d18bbeacd733e055134bb9b5d8f59739fe41996f6b2527b89fb0a8a85db",
+      "rows": 120,
+      "columns": 4
+    },
+    {
+      "path": "data/processed/v0.1.0-preview/dc_params.csv",
+      "sha256": "22655b8f599908f7c385357ce37d4436b7cef36c1015b378b07cf563dda0a6e0",
+      "rows": 8,
+      "columns": 7
+    },
+    {
+      "path": "data/processed/v0.1.0-preview/inventory_params.csv",
+      "sha256": "2828559aa34824293ace2897fb9c026ca6fa984cb25648a24f0594a2df485944",
+      "rows": 8,
+      "columns": 7
+    },
+    {
+      "path": "data/processed/v0.1.0-preview/market_params.csv",
+      "sha256": "dd5758fa17329afd91cc0fa1d40c8c0746ae80c23436ea795c98c8edf0f34710",
+      "rows": 15,
+      "columns": 9
+    },
+    {
+      "path": "data/processed/v0.1.0-preview/nodes.csv",
+      "sha256": "959f7bc9ffac9cc98f97af13481f08c511baed3786b36b6dcf60e3fe340f63a4",
+      "rows": 16,
+      "columns": 8
+    },
+    {
+      "path": "data/processed/v0.1.0-preview/supplier_dc.csv",
+      "sha256": "ec3e0f29d2ee934fc23b1480933b5e36cca4d008987b169b832df72772e49e61",
+      "rows": 8,
+      "columns": 4
+    }
+  ],
+  "processed_non_empty_values": 918,
+  "lineage_rows": 918,
+  "source_records": 54,
+  "source_verification_summary": {
+    "STAT_verified_exact": 14,
+    "STAT_pending_manual_review": 1,
+    "PRICE_verified_exact": 11,
+    "PRICE_verified_page_but_value_unavailable": 3,
+    "PRICE_pending_manual_review": 1
+  },
+  "price_comparability": {
+    "high": 9,
+    "moderate": 2,
+    "low": 4
+  },
+  "rent_comparability": {
+    "high": 3,
+    "moderate": 3,
+    "low": 2
+  },
+  "data_quality_audit": {
+    "failed": 0,
+    "warnings": 12
+  },
+  "third_party_attribution_audit": {
+    "passed": 11,
+    "failed": 0
+  },
+  "open_issue_summary": {
+    "resolved": 5,
+    "partially_resolved": 5,
+    "open": 2,
+    "preview_blockers": 0,
+    "formal_release_blockers": 2,
+    "model_execution_blockers": 1
+  },
+  "carbon_quota_status": "not_yet_generated",
+  "formal_release_ready": false,
+  "preview_release_ready": true,
+  "model_execution_ready": false
+}
