@@ -50,3 +50,12 @@ publisher terms continue to apply and no full webpages are redistributed.
 See the [dataset card](DATASET_CARD.md), [release readiness](docs/release_readiness.md), [open issues](metadata/open_issues_register.csv), and [carbon-quota protocol](docs/carbon_quota_generation_protocol.md). The preview has no DOI assigned. Formal licensed release and carbon-quota-dependent model execution remain blocked as documented.
 
 Audits: [data quality](docs/data_quality_audit.md), [observation comparability](docs/observation_comparability_audit.md), [third-party attribution](docs/third_party_attribution_audit.md), and [release readiness](docs/release_readiness_audit.md).
+
+## v0.2 candidate location study
+
+v0.1 remains the stable preview. The exploratory v0.2 candidate DC register
+assesses representative logistics-park locations without entering them into
+processed inputs, changing frozen experiments, or regenerating OSRM distances.
+See [`metadata/v0.2_candidate_dc_locations.csv`](metadata/v0.2_candidate_dc_locations.csv),
+[`docs/v0.2_candidate_dc_location_design.md`](docs/v0.2_candidate_dc_location_design.md),
+and [`docs/v0.2_candidate_dc_location_audit.md`](docs/v0.2_candidate_dc_location_audit.md).

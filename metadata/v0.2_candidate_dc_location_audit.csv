@@ -1,0 +1,20 @@
+﻿check_id,status,message
+V02-001,passed,exactly eight candidate DC records
+V02-002,passed,C01-C08 present
+V02-003,passed,one primary candidate per city
+V02-004,passed,candidate names non-empty
+V02-005,passed,official source URLs present
+V02-006,passed,coordinate status enum valid
+V02-007,passed,confidence enum valid
+V02-008,passed,representative method enum valid
+V02-COORD-C01,passed,coordinate pair is either blank or in range
+V02-COORD-C02,passed,coordinate pair is either blank or in range
+V02-COORD-C03,passed,coordinate pair is either blank or in range
+V02-COORD-C04,passed,coordinate pair is either blank or in range
+V02-COORD-C05,passed,coordinate pair is either blank or in range
+V02-COORD-C06,passed,coordinate pair is either blank or in range
+V02-COORD-C07,passed,coordinate pair is either blank or in range
+V02-COORD-C08,passed,coordinate pair is either blank or in range
+V02-009,passed,no unverified coordinates entered
+V02-010,passed,city-centre substitutions excluded
+V02-011,passed,v0.1 processed directory remains the only processed dataset

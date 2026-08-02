@@ -26,3 +26,9 @@ Use for public-data calibration, screening heterogeneity, robustness, and reprod
 
 ## Maintenance, citation, and carbon quota
 Maintainer: Zeyu Pei (@peizeyuSEU). Versioning preserves preview inputs. No DOI is assigned. Carbon quota is `not_yet_generated` and must come from an external recorded model artifact.
+
+## v0.2 candidate location study
+`metadata/v0.2_candidate_dc_locations.csv` and its audit/design documents are
+an exploratory register of representative logistics-park candidates. They do
+not replace v0.1 city-centre coordinates, do not enter the v0.1 build, and do
+not imply enterprise warehouses or customer addresses.

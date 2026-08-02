@@ -62,6 +62,14 @@ historical ranges whose recorded values are the stated two-quotation midpoints.
 Dynamic or restricted pages are not treated as exact merely because a URL
 responds.
 
+The supplementary review did not upgrade PRICE_C04 or PRICE_M13 because the
+available evidence was not fully machine-readable for the recorded historical
+rows. C04 retains its 3310--3370 midpoint (3340); the Mysteel supplementary
+URL returned a restricted response. M13 retains its 3260 value and Phi18--22
+band; the indexed Huzhou page is supporting evidence, but the retrievable page
+does not expose the 2026-06-18 row. Both records therefore remain
+`verified_page_but_value_unavailable`, with original URLs and values unchanged.
+
 The interval-midpoint records are PRICE_C04 (3310--3370 → 3340), PRICE_M09
 (3240--3290 → 3265), and PRICE_M11 (3190--3290 → 3240). PRICE_C06 remains a
 brand-specific Zhongtian observation; PRICE_M13 uses a Φ18--22 specification
