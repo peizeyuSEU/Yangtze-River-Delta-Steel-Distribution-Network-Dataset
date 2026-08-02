@@ -46,7 +46,7 @@ def main():
         "C06": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
         "C07": ("verified_exact", "https://www.tjnj.net/newsview.aspx?newsid=20250427155536", "statistical-bulletin mirror confirms exact value; not necessarily the official origin page"),
         "C08": ("pending_manual_review", "https://tjj.jiaxing.gov.cn/module/download/downfile.jsp?classid=0&filename=78c3082538704b178ee0a1f21d20f0d1.pdf", "public bulletin mirror cross-checks 3751.81; original Jiaxing Statistics Bureau PDF still requires manual browser confirmation"),
-        "M09": ("verified_metadata_only", "https://www.changzhou.gov.cn/gi_news/618174366821577", "Changzhou Statistics Bureau 2024 economic-operation and statistical-bulletin pages confirm title, publisher, date, and 5139.4 billion CNY; automated parsing did not expose the original body value"),
+        "M09": ("verified_exact", "https://www.changzhou.gov.cn/gi_news/618174366821577", "The original Changzhou government statistical bulletin directly displays the 2024 secondary-industry value added of 5139.4 billion CNY."),
         "M10": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
         "M11": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
         "M12": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
@@ -55,11 +55,29 @@ def main():
         "M15": ("verified_exact", "https://tjgb.hongheiku.com/djs/64880.html", "statistical-bulletin mirror confirms exact value; not necessarily the official origin page"),
     }
 
+    price_status = {
+        "C01": ("pending_manual_review", "", "The multi-city quotation page is retained; automated review did not reliably expose the historical Shanghai row, so city/date/spec/brand/value need manual confirmation."),
+        "C02": ("pending_manual_review", "", "The multi-city quotation page is retained; automated review did not reliably expose the historical Nanjing row, so city/date/spec/brand/value need manual confirmation."),
+        "C03": ("content_changed", "https://m.steelx2.com/region-quotation.aspx?city=suzhou&typeid=1", "Current Suzhou page confirms the city and 2026-07-14 date but exposes different HRB400/price rows from the recorded HRB400E Phi20 3470; original historical value is not currently an exact match."),
+        "C04": ("verified_page_but_value_unavailable", "", "Mysteel page is a dynamic historical quotation; the original range and midpoint require manual page access."),
+        "C05": ("pending_manual_review", "", "The multi-city quotation page is retained; automated review did not reliably expose the historical Hangzhou row, so city/date/spec/brand/value need manual confirmation."),
+        "C06": ("verified_page_but_value_unavailable", "", "Mysteel page is a dynamic historical quotation; the Zhongtian brand-specific Ningbo row requires manual page access."),
+        "C07": ("pending_manual_review", "", "The multi-city quotation page is retained; automated review did not reliably expose the historical Hefei row, so city/date/spec/brand/value need manual confirmation."),
+        "C08": ("verified_exact", "https://m.steelx2.com/region-quotation.aspx?city=jiaxing&typeid=1", "Current quotation page confirms Jiaxing, 2026-06-30, HRB400E Phi20, and 3440 CNY/t; the page is supplementary evidence and the original URL is retained."),
+        "M09": ("verified_page_but_value_unavailable", "", "Mysteel page is a dynamic historical quotation; the 3240-3290 range and midpoint require manual page access."),
+        "M10": ("pending_manual_review", "", "The multi-city quotation page is retained; automated review did not reliably expose the historical Nantong row, so city/date/spec/brand/value need manual confirmation."),
+        "M11": ("verified_page_but_value_unavailable", "", "Mysteel page is a dynamic historical quotation; the Taizhou range and midpoint require manual page access."),
+        "M12": ("pending_manual_review", "", "SteelX2 page is retained, but automated review did not reliably expose the historical Shaoxing row and exact specification."),
+        "M13": ("verified_page_but_value_unavailable", "", "Mysteel page is a dynamic historical quotation; the Huzhou Phi18-22 specification-band row requires manual page access."),
+        "M14": ("pending_manual_review", "", "The city quotation page is retained; automated review did not reliably expose the historical Wuhu row, so city/date/spec/brand/value need manual confirmation."),
+        "M15": ("verified_page_but_value_unavailable", "", "Jinhua value is a geographic proxy constructed from Hangzhou, Jiaxing and Shaoxing screening observations; the linked page is supporting context, not a direct Jinhua quotation."),
+    }
+
     def verification(entity, default="pending_manual_review"):
         status, evidence, note = stat_status.get(entity, (default, "", ""))
         return {"verification_status": status, "verification_checked_at": "2026-08-02",
                 "verification_evidence_url": evidence,
-                "verification_evidence_type": "direct_page" if status == "verified_exact" and evidence == "" else ("supplementary_official_evidence" if entity == "M09" else ("mirror_cross_check" if evidence else "original_page")),
+                "verification_evidence_type": "original_official_page_exact_match" if entity == "M09" else ("direct_page" if status == "verified_exact" and evidence == "" else ("mirror_cross_check" if evidence else "original_page")),
                 "verification_note": note}
 
     for rowno, r in rows(wb["Nodes"], 1):
@@ -93,6 +111,10 @@ def main():
         note = s(r.get("Notes"))
         if mid == "M15":
             note += " Parent observations: PRICE_C05, PRICE_C08, PRICE_M12."
+        pstatus, pevidence, pnote = price_status[mid]
+        if mid == "C04": note += " Range midpoint recomputes as (3310 + 3370) / 2 = 3340 CNY/t."
+        if mid == "M09": note += " Range midpoint recomputes as (3240 + 3290) / 2 = 3265 CNY/t."
+        if mid == "M11": note += " Range midpoint recomputes as (3190 + 3290) / 2 = 3240 CNY/t."
         out.append({"source_record_id": f"PRICE_{mid}", "entity_id": mid, "city": city,
             "variable_name": "observed_price_cny_per_tonne", "recovered_value": s(r.get("Selected screening price\n(CNY/t)")),
             "recovered_unit": "CNY/t", "source_url": s(r.get("Source URL")),
@@ -101,8 +123,10 @@ def main():
             "observation_type": s(r.get("Observation type")), "proxy_flag": proxy,
             "original_workbook": wb_name, "original_sheet": "Steel_Prices_Observed", "original_row": rowno,
             "workbook_sha256": digest, "recovery_status": "recovered",
-            "verification_status": "verified_page_but_value_unavailable" if mid == "M15" else "pending_manual_review",
-            "verification_checked_at": "", "verification_evidence_url": "", "verification_evidence_type": "", "verification_note": "",
+            "verification_status": pstatus,
+            "verification_checked_at": "2026-08-02", "verification_evidence_url": pevidence,
+            "verification_evidence_type": "original_page_exact_match" if pstatus == "verified_exact" and mid == "C08" else ("supporting_context_only" if mid == "M15" else ("current_page_differs" if mid == "C03" else "dynamic_or_restricted_page")),
+            "verification_note": pnote,
             "notes": note})
 
     for rowno, r in rows(wb["Warehouse_Rents_Observed"], 4):
@@ -133,7 +157,13 @@ def main():
             r["source_url"] = x["source_url"]
             r["observation_date"] = x["observation_date"]
             r["proxy_flag"] = x["proxy_flag"]
-            r["notes"] = (r.get("notes", "").strip().strip('"') + " " + x["notes"]).strip()
+            # Keep source-record notes stable; detailed verification notes live
+            # in the recovery register and must not alter the raw record text.
+            if r.get("variable_name") not in {"steel_price"}:
+                existing = r.get("notes", "").strip().strip('"')
+                detail = x["notes"].strip()
+                if detail and detail not in existing:
+                    r["notes"] = (existing + " " + detail).strip()
         with sr_path.open("w", encoding="utf-8-sig", newline="") as f:
             w = csv.DictWriter(f, fieldnames=sr[0].keys()); w.writeheader(); w.writerows(sr)
     # Keep source_catalog category-level and add an explicit register pointer.

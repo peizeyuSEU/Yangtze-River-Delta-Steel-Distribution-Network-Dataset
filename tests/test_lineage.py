@@ -87,8 +87,23 @@ def test_statistical_source_verification_counts_and_urls():
  reg={x['source_record_id']:x for x in read(ROOT/'metadata/source_recovery_register.csv') if x['source_record_id'].startswith('STAT_')}
  assert len(reg)==15 and all(x['verification_status'] for x in reg.values())
  from collections import Counter
- assert Counter(x['verification_status'] for x in reg.values())==Counter({'verified_exact':13,'verified_metadata_only':1,'pending_manual_review':1})
+ assert Counter(x['verification_status'] for x in reg.values())==Counter({'verified_exact':14,'verified_metadata_only':0,'pending_manual_review':1})
  assert reg['STAT_M09']['source_url']=='https://www.changzhou.gov.cn/gi_news/618174366821577'
+ assert reg['STAT_M09']['verification_status']=='verified_exact'
+ assert reg['STAT_M09']['verification_evidence_type']=='original_official_page_exact_match'
  assert reg['STAT_C08']['source_url']=='https://tjj.jiaxing.gov.cn/module/download/downfile.jsp?classid=0&filename=78c3082538704b178ee0a1f21d20f0d1.pdf'
  assert all(x['verification_checked_at']=='2026-08-02' for x in reg.values())
  assert all(x['recovered_value'] for x in reg.values())
+
+def test_price_source_verification_and_midpoint_disclosure():
+ reg={x['source_record_id']:x for x in read(ROOT/'metadata/source_recovery_register.csv') if x['source_record_id'].startswith('PRICE_')}
+ assert len(reg)==15 and all(x['verification_status'] for x in reg.values())
+ assert reg['PRICE_M15']['proxy_flag']=='true'
+ assert all(k in reg['PRICE_M15']['notes'] for k in ('PRICE_C05','PRICE_C08','PRICE_M12'))
+ assert 'Jinhua value is a geographic proxy constructed from Hangzhou, Jiaxing and Shaoxing screening observations' in reg['PRICE_M15']['verification_note']
+ assert reg['PRICE_C08']['source_url']=='https://m.steelx2.com/news-content.aspx?id=643704'
+ assert reg['PRICE_C03']['verification_status']=='content_changed'
+ assert '(3310 + 3370) / 2 = 3340' in reg['PRICE_C04']['notes']
+ assert '(3240 + 3290) / 2 = 3265' in reg['PRICE_M09']['notes']
+ assert '(3190 + 3290) / 2 = 3240' in reg['PRICE_M11']['notes']
+ assert all(x['verification_checked_at']=='2026-08-02' for x in reg.values())
