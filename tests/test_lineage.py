@@ -102,7 +102,13 @@ def test_price_source_verification_and_midpoint_disclosure():
  assert all(k in reg['PRICE_M15']['notes'] for k in ('PRICE_C05','PRICE_C08','PRICE_M12'))
  assert 'Jinhua value is a geographic proxy constructed from Hangzhou, Jiaxing and Shaoxing screening observations' in reg['PRICE_M15']['verification_note']
  assert reg['PRICE_C08']['source_url']=='https://m.steelx2.com/news-content.aspx?id=643704'
- assert reg['PRICE_C03']['verification_status']=='content_changed'
+ from collections import Counter
+ assert Counter(x['verification_status'] for x in reg.values())==Counter({'verified_exact':6,'verified_page_but_value_unavailable':3,'content_changed':0,'pending_manual_review':6})
+ for k in ('PRICE_C03','PRICE_C06','PRICE_C08','PRICE_M09','PRICE_M10','PRICE_M11'):
+  assert reg[k]['verification_status']=='verified_exact'
+ assert reg['PRICE_C03']['verification_evidence_type']=='search_indexed_historical_snapshot'
+ assert reg['PRICE_M09']['verification_evidence_type']=='historical_range_midpoint'
+ assert reg['PRICE_M11']['verification_evidence_type']=='historical_range_midpoint'
  assert '(3310 + 3370) / 2 = 3340' in reg['PRICE_C04']['notes']
  assert '(3240 + 3290) / 2 = 3265' in reg['PRICE_M09']['notes']
  assert '(3190 + 3290) / 2 = 3240' in reg['PRICE_M11']['notes']

@@ -47,14 +47,17 @@ and M15 are explicitly marked as media or bulletin mirrors where applicable.
 
 ### Steel-price records (15)
 
-The 2026-08-02 review records 1 `verified_exact` (PRICE_C08), 6
-`verified_page_but_value_unavailable`, 1 `content_changed` (PRICE_C03), and 7
-`pending_manual_review`. No recovered value was changed and no numeric mismatch
-was introduced. PRICE_C08 has a current Jiaxing quotation page showing
-2026-06-30, HRB400E Φ20, and 3440 CNY/t. PRICE_C03's current Suzhou page
-confirms the city/date but exposes a different HRB400/price row, so it is
-`content_changed` rather than exact. Dynamic or restricted Mysteel pages are
-not treated as exact merely because a URL responds.
+The 2026-08-02 review records 6 `verified_exact`, 3
+`verified_page_but_value_unavailable`, 0 `content_changed`, and 6
+`pending_manual_review`. No recovered numeric value was changed. PRICE_C03 is
+supported by a search-indexed historical snapshot; the dynamic regional entry
+may show another date when opened later and must not be confused with the
+historical snapshot. PRICE_C06 and PRICE_M10 have supplementary same-day
+market-flash evidence. PRICE_C08 has a Jiaxing quotation page showing
+2026-06-30, HRB400E Φ20, and 3440 CNY/t. PRICE_M09 and PRICE_M11 are exact
+historical ranges whose recorded values are the stated two-quotation midpoints.
+Dynamic or restricted pages are not treated as exact merely because a URL
+responds.
 
 The interval-midpoint records are PRICE_C04 (3310--3370 → 3340), PRICE_M09
 (3240--3290 → 3265), and PRICE_M11 (3190--3290 → 3240). PRICE_C06 remains a
