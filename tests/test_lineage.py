@@ -147,3 +147,20 @@ def test_offline_data_quality_audit_is_reproducible_and_non_mutating():
  assert all(any(x['check_id']==k and x['status']=='passed' for x in audit) for k in ('LIN-002','LIN-003','LIN-004','LIN-005','LIN-006','LIN-007','LIN-008','CFG-001','EMI-001','EMI-002','SCH-001'))
  first=(ROOT/'metadata/data_quality_audit.csv').read_bytes(); q=subprocess.run([sys.executable,str(ROOT/'scripts/audit_data_quality.py')],capture_output=True,text=True); assert q.returncode==0,q.stderr; assert first==(ROOT/'metadata/data_quality_audit.csv').read_bytes()
  assert before==hashes(); assert len(read(ROOT/'metadata/record_lineage.csv'))==918
+
+def test_intracity_zero_distance_sensitivity_is_offline_and_non_mutating():
+ import hashlib,subprocess,sys
+ files=('case_config.json','dc_emission_params.csv','dc_market.csv','dc_params.csv','inventory_params.csv','market_params.csv','nodes.csv','supplier_dc.csv')
+ before={f:hashlib.sha256((ROOT/'data/processed/v0.1.0-preview'/f).read_bytes()).hexdigest() for f in files}
+ q=subprocess.run([sys.executable,str(ROOT/'scripts/analyze_intracity_zero_distance.py')],capture_output=True,text=True); assert q.returncode==0,q.stderr
+ rows=read(ROOT/'metadata/intracity_zero_distance_sensitivity.csv'); assert len(rows)==48
+ assert {int(float(x['candidate_distance_km'])) for x in rows}=={0,5,10,15,20,30}
+ assert {x['dc_id']+'|'+x['market_id'] for x in rows}=={f'C0{i}|C0{i}' for i in range(1,9)}
+ for x in rows:
+  d=float(x['candidate_distance_km']); rate=float(x['transport_rate_cny_per_tonne_km']); ef=float(x['transport_emission_factor_tco2e_per_tonne_km']); dem=float(x['annual_demand_tonnes'])
+  assert abs(float(x['cost_cny_per_tonne'])-d*rate)<1e-12; assert abs(float(x['emission_tco2e_per_tonne'])-d*ef)<1e-15
+  assert abs(float(x['annual_cost_if_all_local_demand_served'])-dem*d*rate)<1e-6; assert abs(float(x['annual_emission_if_all_local_demand_served'])-dem*d*ef)<1e-8
+  if d==0: assert all(abs(float(x[k]))<1e-12 for k in ('delta_cost_cny_per_tonne','delta_emission_tco2e_per_tonne','delta_annual_cost','delta_annual_emission'))
+ for key in ('C01','C02','C03','C04','C05','C06','C07','C08'):
+  vals=[float(x['delta_annual_cost']) for x in rows if x['dc_id']==key]; assert vals==sorted(vals)
+ assert before=={f:hashlib.sha256((ROOT/'data/processed/v0.1.0-preview'/f).read_bytes()).hexdigest() for f in files}; assert len(read(ROOT/'metadata/record_lineage.csv'))==918

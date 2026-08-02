@@ -231,7 +231,7 @@ LIN-005,lineage,info,passed,record_lineage.csv,,,0,0,,parent references
 LIN-006,lineage,info,passed,record_lineage.csv,,,0,0,,source-record foreign keys
 LIN-007,lineage,info,passed,record_lineage.csv,,,0,0,,scenario foreign keys
 LIN-008,lineage,info,passed,record_lineage.csv,,,0,0,,transformation registry foreign keys
-WARN-001,limitations,warning,warning,dc_market.csv,C01|C01,road_distance_km,0,0,0,same-city structural zero is permitted
+WARN-001,limitations,info,passed,dc_market.csv,all,road_distance_km,8,8,0,category summary: same-city structural zero; record-level DST-003 rows remain warnings
 WARN-002,limitations,warning,warning,market_params.csv,M15,observed_price_cny_per_tonne,proxy,direct observation,,Jinhua price is a documented geographic proxy
 WARN-003,limitations,warning,warning,dc_params.csv,C02|C07,rent_status,specific_listing,city_average,,"rents are specific listings, not city averages"
 WARN-004,limitations,warning,warning,source_records.csv,all,observation_date,mixed,single date,,"source time bases differ across statistics, prices, and rents"
