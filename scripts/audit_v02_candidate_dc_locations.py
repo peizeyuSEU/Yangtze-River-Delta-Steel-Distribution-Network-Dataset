@@ -2,6 +2,7 @@
 import csv,json
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]; SRC=ROOT/'metadata/v0.2_candidate_dc_locations.csv'; OUT=ROOT/'metadata/v0.2_candidate_dc_location_audit.csv'; DOC=ROOT/'docs/v0.2_candidate_dc_location_audit.md'
+ALLOWED={'accepted_exact_address','accepted_named_poi','accepted_within_official_boundary','rejected_city_level_result','rejected_road_only_result','rejected_wrong_facility','rejected_outside_boundary','ambiguous','no_result'}
 def read(p):
  with p.open(encoding='utf-8-sig',newline='') as f:return list(csv.DictReader(f))
 def main():
@@ -18,6 +19,9 @@ def main():
   haslat=bool(r['latitude']); haslon=bool(r['longitude']); add('V02-COORD-'+r['dc_id'],(haslat==haslon) and (not haslat or (-90<=float(r['latitude'])<=90 and -180<=float(r['longitude'])<=180)),'coordinate pair is either blank or in range')
   if r['confidence_level']=='high': add('V02-HIGH-'+r['dc_id'],bool(r['address_or_boundary'] and r['official_source_url']),'high-confidence candidate has location evidence')
  add('V02-009',all(not (r['latitude'] and r['longitude']) for r in rows),'no unverified coordinates entered'); add('V02-010',not any(r['latitude'] and r['longitude'] and 'city centre' in ((r.get('notes') or '')+' '+(r.get('selection_rationale') or '')).lower() for r in rows),'city-centre substitutions excluded'); add('V02-011',(ROOT/'data/processed/v0.1.0-preview').exists(),'v0.1 processed directory remains the only processed dataset')
+ log=ROOT/'metadata/v0.2_candidate_geocoding_log.csv'
+ if log.exists():
+  lr=read(log); add('V02-012',len(lr)==24,'geocoding log has at most three explicit queries per each of eight cities'); add('V02-013',all(x['acceptance_status'] in ALLOWED for x in lr),'geocoding acceptance enum valid'); add('V02-014',all(not (x['acceptance_status'].startswith('accepted_')) or (x['response_cache_path'] and x['selected_osm_type'] and x['selected_osm_id']) for x in lr),'accepted results retain cache and OSM identifiers'); add('V02-015',all(x['acceptance_status'].startswith('accepted_') or (not x['selected_latitude'] and not x['selected_longitude']) for x in lr),'rejected or ambiguous results do not provide accepted coordinates')
  with OUT.open('w',encoding='utf-8-sig',newline='') as f:w=csv.DictWriter(f,fieldnames=['check_id','status','message']);w.writeheader();w.writerows(checks)
  failed=sum(x['status']=='failed' for x in checks); DOC.write_text('# v0.2 candidate DC location audit\n\nOffline audit only; no geocoding or network calls are performed.\n\n'+f'Checks: {len(checks)}; passed: {len(checks)-failed}; failed: {failed}.\n\nEight candidate records C01-C08 are registered. Coordinates are intentionally blank pending repeatable address/POI/boundary evidence, so no city-centre coordinate is repurposed as a DC location. The register does not enter the v0.1 build and no OSRM matrix was regenerated.\n',encoding='utf-8'); print(json.dumps({'checks':len(checks),'failed':failed}))
 if __name__=='__main__':main()

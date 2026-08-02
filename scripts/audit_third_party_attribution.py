@@ -7,7 +7,7 @@ def read(p):
 def main():
     inv=read(ROOT/'metadata/third_party_data_inventory.csv'); rows=[]
     def add(cid,status,msg): rows.append({'check_id':cid,'status':status,'message':msg})
-    ids={x['third_party_id'] for x in inv}; required={'SRC_GEONAMES_DATA','SRC_OSM_DATA','SRC_OSRM_SOFTWARE','SRC_OSRM_DEMO_SERVICE','SRC_OSRM_CACHE','SRC_CITY_STATISTICS','SRC_STEEL_PRICE_PAGES','SRC_WAREHOUSE_RENT_PAGES'}
+    ids={x['third_party_id'] for x in inv}; required={'SRC_GEONAMES_DATA','SRC_OSM_DATA','SRC_OSRM_SOFTWARE','SRC_OSRM_DEMO_SERVICE','SRC_OSRM_CACHE','SRC_CITY_STATISTICS','SRC_STEEL_PRICE_PAGES','SRC_WAREHOUSE_RENT_PAGES','SRC_NOMINATIM_GEOCODING'}
     add('TP-001','passed' if required<=ids else 'failed','required third-party components present')
     g=next(x for x in inv if x['third_party_id']=='SRC_GEONAMES_DATA'); o=next(x for x in inv if x['third_party_id']=='SRC_OSM_DATA'); s=next(x for x in inv if x['third_party_id']=='SRC_OSRM_SOFTWARE')
     add('TP-002','passed' if g['license_name']=='Creative Commons Attribution' and g['license_version']=='4.0' else 'failed','GeoNames CC BY 4.0')
@@ -22,6 +22,7 @@ def main():
     add('TP-009','passed' if 'Produced Work' in normalized and 'Derived Database' in normalized and 'scope review' in normalized else 'failed','OSM/OSRM derived-output scope review retained')
     add('TP-010','passed' if not any('fully_relicensed' in x['redistribution_status'] for x in inv) else 'failed','no blanket relicensing')
     reg=read(ROOT/'metadata/source_recovery_register.csv'); add('TP-011','passed' if all(x['source_url'].startswith('http') for x in reg) else 'failed','original source URLs remain present')
+    add('TP-012','passed' if 'Nominatim' in text and 'cached' in text.lower() else 'failed','Nominatim is documented as a cached exploratory service')
     with OUT.open('w',encoding='utf-8-sig',newline='') as f:w=csv.DictWriter(f,fieldnames=['check_id','status','message']); w.writeheader(); w.writerows(rows)
     failed=sum(x['status']=='failed' for x in rows); DOC.write_text('# Third-party attribution audit\n\nOffline checks only.\n\n'+f"Checks: {len(rows)}; passed: {len(rows)-failed}; failed: {failed}.\n\n"+'All third-party components are inventoried. GeoNames, OSM, and OSRM are kept as distinct data/software/service categories. Web sources are factual extraction only, and the cached distance matrix retains conservative ODbL scope review. No blanket relicensing is asserted.\n',encoding='utf-8'); print(json.dumps({'checks':len(rows),'failed':failed}))
 if __name__=='__main__':main()

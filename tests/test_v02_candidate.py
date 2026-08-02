@@ -18,6 +18,11 @@ def test_candidate_register_has_eight_cities_and_no_coordinates():
 def test_candidate_audit_offline_and_passes():
  q=subprocess.run([sys.executable,str(ROOT/'scripts/audit_v02_candidate_dc_locations.py')],capture_output=True,text=True); assert q.returncode==0; assert '"failed": 0' in q.stdout
  text=(ROOT/'scripts/audit_v02_candidate_dc_locations.py').read_text(); assert 'requests' not in text and 'urllib' not in text
+def test_geocoding_run_is_explicit_cached_and_no_accepted_coordinates():
+ rows=read(ROOT/'metadata/v0.2_candidate_geocoding_log.csv'); assert len(rows)==24; assert all(int(x['query_order'])<=3 for x in rows); assert all(x['acceptance_status'] in {'ambiguous','no_result'} for x in rows); assert all(not x['selected_latitude'] and not x['selected_longitude'] for x in rows)
+ script=(ROOT/'scripts/geocode_v02_candidate_dc_locations.py').read_text(encoding='utf-8'); assert 'build_all' not in script and 'pytest' not in script and 'audit_v02' not in script
+def test_candidate_metadata_c03_c07_corrections():
+ r={x['dc_id']:x for x in read(ROOT/'metadata/v0.2_candidate_dc_locations.csv')}; assert '海盛路68号' in r['C03']['address_or_boundary'] and '75号' in r['C03']['address_or_boundary']; assert r['C03']['representative_point_method']=='exact_address'; assert '莲花路以西' in r['C07']['address_or_boundary'] and '疏港大道以北' in r['C07']['address_or_boundary']; assert r['C07']['representative_point_method']=='official_project_location'
 def test_v01_manifest_and_processed_hashes_unchanged():
  m=json.loads((ROOT/'metadata/release_manifest.json').read_text()); assert m['processed_non_empty_values']==918 and m['lineage_rows']==918 and m['carbon_quota_status']=='not_yet_generated' and m['preview_release_ready'] is True and m['formal_release_ready'] is False and m['model_execution_ready'] is False
  assert len(read(ROOT/'metadata/record_lineage.csv'))==918

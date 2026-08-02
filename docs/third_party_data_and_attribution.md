@@ -21,6 +21,12 @@ machine-readable inventory is `metadata/third_party_data_inventory.csv`.
   sources. Only URLs, factual values, verification metadata, and derived
   parameters are stored; full webpages, images, tables, or article text are not
   redistributed. Publisher/platform terms continue to apply.
+- The v0.2 candidate study made one explicit, small Nominatim query run for
+  candidate-location screening. Nominatim results are backed by OpenStreetMap
+  data; the run was single-threaded, rate-limited, cached, and did not assert
+  that OSM or Nominatim officially certifies any coordinate. No accepted
+  coordinate was written because the service responses were unavailable or
+  insufficient for the acceptance rules.
 
 ## Suggested attribution
 
@@ -29,6 +35,10 @@ attribution to GeoNames under CC BY 4.0.
 
 Road-network distances were computed using OSRM with map data from
 OpenStreetMap contributors, available under the Open Database License (ODbL).
+
+Candidate-location geocoding responses, where available, are retained under
+`data/cache/v0.2-candidate/geocoding/` with OpenStreetMap attribution. They are
+screening evidence only, not official address certification.
 
 This is a data-management description, not legal advice. Users must check the
 current terms of each third-party platform before redistribution or commercial

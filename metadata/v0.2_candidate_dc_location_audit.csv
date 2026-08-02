@@ -10,6 +10,7 @@ V02-008,passed,representative method enum valid
 V02-COORD-C01,passed,coordinate pair is either blank or in range
 V02-COORD-C02,passed,coordinate pair is either blank or in range
 V02-COORD-C03,passed,coordinate pair is either blank or in range
+V02-HIGH-C03,passed,high-confidence candidate has location evidence
 V02-COORD-C04,passed,coordinate pair is either blank or in range
 V02-COORD-C05,passed,coordinate pair is either blank or in range
 V02-COORD-C06,passed,coordinate pair is either blank or in range
@@ -18,3 +19,7 @@ V02-COORD-C08,passed,coordinate pair is either blank or in range
 V02-009,passed,no unverified coordinates entered
 V02-010,passed,city-centre substitutions excluded
 V02-011,passed,v0.1 processed directory remains the only processed dataset
+V02-012,passed,geocoding log has at most three explicit queries per each of eight cities
+V02-013,passed,geocoding acceptance enum valid
+V02-014,passed,accepted results retain cache and OSM identifiers
+V02-015,passed,rejected or ambiguous results do not provide accepted coordinates

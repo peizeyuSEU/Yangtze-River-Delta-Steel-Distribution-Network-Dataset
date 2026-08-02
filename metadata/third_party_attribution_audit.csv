@@ -10,3 +10,4 @@ TP-008,passed,web sources remain factual extraction only
 TP-009,passed,OSM/OSRM derived-output scope review retained
 TP-010,passed,no blanket relicensing
 TP-011,passed,original source URLs remain present
+TP-012,passed,Nominatim is documented as a cached exploratory service

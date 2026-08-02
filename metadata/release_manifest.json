@@ -1,7 +1,7 @@
 {
   "dataset_name": "Yangtze River Delta Steel Distribution Network Dataset",
   "version": "0.1.0-preview",
-  "manifest_basis_commit": "e652fa62aa5f32238dc0ac2fef1e7ad756225e95",
+  "manifest_basis_commit": "3168bb3912384a3a7511a57a5ac690922cd3d898",
   "generated_at": "2026-08-02",
   "processed_files": [
     {
