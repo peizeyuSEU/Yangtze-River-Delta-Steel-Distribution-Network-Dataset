@@ -82,3 +82,13 @@ def test_source_verification_status_enum_and_no_workbook_copy():
  allowed={'verified_exact','verified_metadata_only','verified_page_but_value_unavailable','blocked','dead_link','content_changed','pending_manual_review'}
  reg=read(ROOT/'metadata/source_recovery_register.csv'); assert all(x['verification_status'] in allowed for x in reg)
  assert not list(ROOT.rglob('长三角钢材配送案例_公开数据校准包_v2.xlsx'))
+
+def test_statistical_source_verification_counts_and_urls():
+ reg={x['source_record_id']:x for x in read(ROOT/'metadata/source_recovery_register.csv') if x['source_record_id'].startswith('STAT_')}
+ assert len(reg)==15 and all(x['verification_status'] for x in reg.values())
+ from collections import Counter
+ assert Counter(x['verification_status'] for x in reg.values())==Counter({'verified_exact':13,'verified_metadata_only':1,'pending_manual_review':1})
+ assert reg['STAT_M09']['source_url']=='https://www.changzhou.gov.cn/gi_news/618174366821577'
+ assert reg['STAT_C08']['source_url']=='https://tjj.jiaxing.gov.cn/module/download/downfile.jsp?classid=0&filename=78c3082538704b178ee0a1f21d20f0d1.pdf'
+ assert all(x['verification_checked_at']=='2026-08-02' for x in reg.values())
+ assert all(x['recovered_value'] for x in reg.values())

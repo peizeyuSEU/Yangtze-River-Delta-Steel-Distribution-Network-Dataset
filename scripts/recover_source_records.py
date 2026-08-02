@@ -12,7 +12,8 @@ FIELDS = [
     "recovered_unit", "source_url", "source_title", "publisher_or_platform",
     "observation_date", "source_quality", "observation_type", "proxy_flag",
     "original_workbook", "original_sheet", "original_row", "workbook_sha256",
-    "recovery_status", "verification_status", "notes",
+    "recovery_status", "verification_status", "verification_checked_at",
+    "verification_evidence_url", "verification_evidence_type", "verification_note", "notes",
 ]
 
 def rows(ws, header_row):
@@ -36,6 +37,30 @@ def main():
     wb_name = wb_path.name
     wb = openpyxl.load_workbook(wb_path, data_only=True, read_only=True)
     out = []
+    stat_status = {
+        "C01": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
+        "C02": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
+        "C03": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
+        "C04": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
+        "C05": ("verified_exact", "", "local media reproduces the statistical bulletin; exact value match, not necessarily the official origin page"),
+        "C06": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
+        "C07": ("verified_exact", "https://www.tjnj.net/newsview.aspx?newsid=20250427155536", "statistical-bulletin mirror confirms exact value; not necessarily the official origin page"),
+        "C08": ("pending_manual_review", "https://tjj.jiaxing.gov.cn/module/download/downfile.jsp?classid=0&filename=78c3082538704b178ee0a1f21d20f0d1.pdf", "public bulletin mirror cross-checks 3751.81; original Jiaxing Statistics Bureau PDF still requires manual browser confirmation"),
+        "M09": ("verified_metadata_only", "https://www.changzhou.gov.cn/gi_news/618174366821577", "Changzhou Statistics Bureau 2024 economic-operation and statistical-bulletin pages confirm title, publisher, date, and 5139.4 billion CNY; automated parsing did not expose the original body value"),
+        "M10": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
+        "M11": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
+        "M12": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
+        "M13": ("verified_exact", "https://www.tjnj.net/newsview.aspx?newsid=20250401092827", "statistical-bulletin mirror confirms exact value; not necessarily the official origin page"),
+        "M14": ("verified_exact", "", "direct page confirms city, 2024, second-industry value, unit, and value"),
+        "M15": ("verified_exact", "https://tjgb.hongheiku.com/djs/64880.html", "statistical-bulletin mirror confirms exact value; not necessarily the official origin page"),
+    }
+
+    def verification(entity, default="pending_manual_review"):
+        status, evidence, note = stat_status.get(entity, (default, "", ""))
+        return {"verification_status": status, "verification_checked_at": "2026-08-02",
+                "verification_evidence_url": evidence,
+                "verification_evidence_type": "direct_page" if status == "verified_exact" and evidence == "" else ("supplementary_official_evidence" if entity == "M09" else ("mirror_cross_check" if evidence else "original_page")),
+                "verification_note": note}
 
     for rowno, r in rows(wb["Nodes"], 1):
         nid, city = s(r.get("Node ID")), s(r.get("City"))
@@ -47,7 +72,7 @@ def main():
             "observation_type": "city-centre coordinate", "proxy_flag": "true",
             "original_workbook": wb_name, "original_sheet": "Nodes", "original_row": rowno,
             "workbook_sha256": digest, "recovery_status": "recovered",
-            "verification_status": "verified_metadata_only",
+            **{"verification_status": "verified_metadata_only", "verification_checked_at": "", "verification_evidence_url": "", "verification_evidence_type": "", "verification_note": ""},
             "notes": "City-centre coordinate; not an enterprise or warehouse address."})
 
     for rowno, r in rows(wb["Market_Proxy"], 1):
@@ -60,7 +85,7 @@ def main():
             "observation_type": "statistical proxy", "proxy_flag": "true",
             "original_workbook": wb_name, "original_sheet": "Market_Proxy", "original_row": rowno,
             "workbook_sha256": digest, "recovery_status": "recovered",
-            "verification_status": "pending_manual_review", "notes": "Demand weights and demand fields are derived in the pipeline."})
+            **verification(mid), "notes": "Demand weights and demand fields are derived in the pipeline."})
 
     for rowno, r in rows(wb["Steel_Prices_Observed"], 4):
         mid, city = s(r.get("Market ID")), s(r.get("City"))
@@ -77,6 +102,7 @@ def main():
             "original_workbook": wb_name, "original_sheet": "Steel_Prices_Observed", "original_row": rowno,
             "workbook_sha256": digest, "recovery_status": "recovered",
             "verification_status": "verified_page_but_value_unavailable" if mid == "M15" else "pending_manual_review",
+            "verification_checked_at": "", "verification_evidence_url": "", "verification_evidence_type": "", "verification_note": "",
             "notes": note})
 
     for rowno, r in rows(wb["Warehouse_Rents_Observed"], 4):
@@ -89,7 +115,7 @@ def main():
             "observation_type": s(r.get("Observation type")), "proxy_flag": "true",
             "original_workbook": wb_name, "original_sheet": "Warehouse_Rents_Observed", "original_row": rowno,
             "workbook_sha256": digest, "recovery_status": "recovered",
-            "verification_status": "pending_manual_review",
+            "verification_status": "pending_manual_review", "verification_checked_at": "", "verification_evidence_url": "", "verification_evidence_type": "", "verification_note": "",
             "notes": s(r.get("Notes"))})
 
     out_dir = args.repo_root / "metadata"

@@ -31,6 +31,20 @@ Jinhua price observation.
 The register is intentionally conservative. HTTP reachability alone is not
 treated as proof that a historical value is still visible or unchanged.
 
+### Statistical records (15)
+
+The 2026-08-02 review records 13 `verified_exact`, 1
+`verified_metadata_only`, and 1 `pending_manual_review`; no value mismatch was
+found. `STAT_M09` retains its original Changzhou government URL and has
+supplementary official evidence: the Changzhou Statistics Bureau 2024
+economic-operation/statistical-bulletin pages confirm 5139.4 billion CNY even
+though automated parsing did not expose the original body value. `STAT_C08`
+retains the original Jiaxing Statistics Bureau PDF URL; a public bulletin mirror
+cross-checks 3751.81 billion CNY, while the original PDF still requires manual
+browser confirmation. `verified_exact` describes an exact page/value match and
+does not mean that the page is the official originating source: C05, C07, M13,
+and M15 are explicitly marked as media or bulletin mirrors where applicable.
+
 ## Explicit proxy and licensing notes
 
 - `PRICE_M15` remains a proxy constructed from Hangzhou, Jiaxing, and Shaoxing
@@ -39,4 +53,3 @@ treated as proof that a historical value is still visible or unchanged.
   terms that change. Review those terms before redistribution or commercial use.
 - GeoNames data are attributed separately from OSRM routing and OSM map data;
   these sources must not be conflated.
-
