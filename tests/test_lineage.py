@@ -132,3 +132,12 @@ def test_rent_source_verification_and_unit_conversions():
  assert all(x['recovered_value'] for x in reg.values())
  daily={'C03':0.75,'C04':0.66,'C05':0.70,'C06':0.74,'C08':0.50}
  for did, value in daily.items(): assert abs(float(reg['RENT_'+did]['recovered_value'])-value*30)<1e-9
+
+def test_offline_data_quality_audit_is_reproducible_and_non_mutating():
+ import hashlib,subprocess,sys
+ files=('case_config.json','dc_emission_params.csv','dc_market.csv','dc_params.csv','inventory_params.csv','market_params.csv','nodes.csv','supplier_dc.csv')
+ def hashes(): return {f:hashlib.sha256((ROOT/'data/processed/v0.1.0-preview'/f).read_bytes()).hexdigest() for f in files}
+ before=hashes(); q=subprocess.run([sys.executable,str(ROOT/'scripts/audit_data_quality.py')],capture_output=True,text=True); assert q.returncode==0,q.stderr
+ audit=read(ROOT/'metadata/data_quality_audit.csv'); assert audit and all(x['status'] in {'passed','warning','failed'} for x in audit); assert not any(x['status']=='failed' for x in audit)
+ first=(ROOT/'metadata/data_quality_audit.csv').read_bytes(); q=subprocess.run([sys.executable,str(ROOT/'scripts/audit_data_quality.py')],capture_output=True,text=True); assert q.returncode==0,q.stderr; assert first==(ROOT/'metadata/data_quality_audit.csv').read_bytes()
+ assert before==hashes(); assert len(read(ROOT/'metadata/record_lineage.csv'))==918

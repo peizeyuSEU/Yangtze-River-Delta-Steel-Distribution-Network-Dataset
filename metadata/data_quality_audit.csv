@@ -1,0 +1,216 @@
+﻿check_id,category,severity,status,file,record_id,field,observed,expected,tolerance,message
+ENT-001,entity,info,passed,nodes.csv,,,,,,unique node IDs=16
+ENT-002,entity,info,passed,nodes.csv,,,"supplier=1,dc=8,market=15","1,8,15",,
+ENT-003,entity,info,passed,dc_params.csv,,,,all DC/market foreign keys exist,,foreign-key check
+ENT-004,entity,info,passed,supplier_dc.csv;dc_market.csv,,,,no duplicate arcs,,arc uniqueness
+GEO-001,coordinates,info,passed,nodes.csv,,,,"latitude [-90,90], longitude [-180,180]",,coordinate bounds
+GEO-002,coordinates,info,passed,nodes.csv,,,,,,no duplicate coordinates across nodes
+DST-001,distance,info,passed,supplier_dc.csv;dc_market.csv,,,"min=0.000,max=554.816",>=0,,128 road distances
+DST-002,distance,info,passed,supplier_dc.csv;dc_market.csv,,,0,0,,no distance anomaly
+DEM-001,demand,info,passed,market_params.csv,,,0.99999999,1,1e-06,demand weights sum
+DEM-002,demand,info,passed,market_params.csv,C01,mu_annual_tonnes,136835.573955,136835.56999999998,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,C01,mu_daily_tonnes,374.891983,374.8919834383562,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,C01,sigma2_daily,5621.75997,5621.759956706891,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,C02,mu_annual_tonnes,68562.117509,68562.12000000001,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,C02,mu_daily_tonnes,187.841418,187.84141783287672,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,C02,sigma2_daily,1411.37593,1411.375932650029,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,C03,mu_annual_tonnes,147172.461993,147172.46,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,C03,mu_daily_tonnes,403.212225,403.2122246383562,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,C03,sigma2_daily,6503.203924,6503.203935578026,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,C04,mu_annual_tonnes,90725.643356,90725.64,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,C04,mu_daily_tonnes,248.563406,248.56340645479452,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,C04,sigma2_daily,2471.350681,2471.3506720928335,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,C05,mu_annual_tonnes,65010.469402,65010.47,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,C05,mu_daily_tonnes,178.110875,178.1108750739726,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,C05,sigma2_daily,1268.939353,1268.9393517306248,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,C06,mu_annual_tonnes,92685.481489,92685.48,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,C06,mu_daily_tonnes,253.932826,253.93282599726027,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,C06,sigma2_daily,2579.275205,2579.275204813852,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,C07,mu_annual_tonnes,58334.814852,58334.81,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,C07,mu_daily_tonnes,159.821411,159.82141055342467,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,C07,sigma2_daily,1021.715331,1021.715336561237,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,C08,mu_annual_tonnes,44114.112716,44114.11,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,C08,mu_daily_tonnes,120.860583,120.86058278356165,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,C08,sigma2_daily,584.291219,584.2912209239956,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,M09,mu_annual_tonnes,60429.518257,60429.520000000004,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,M09,mu_daily_tonnes,165.560324,165.56032399178082,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,M09,sigma2_daily,1096.408835,1096.4088353193995,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,M10,mu_annual_tonnes,69452.675106,69452.68000000001,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,M10,mu_daily_tonnes,190.281302,190.28130166027395,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,M10,sigma2_daily,1448.27895,1448.2789556326086,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,M11,mu_annual_tonnes,39062.014979,39062.01,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,M11,mu_daily_tonnes,107.019219,107.01921912054794,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,M11,sigma2_daily,458.12453,458.12452941479864,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,M12,mu_annual_tonnes,46950.045998,46950.05,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,M12,mu_daily_tonnes,128.630263,128.63026300821917,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,M12,sigma2_daily,661.829782,661.8297823779669,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,M13,mu_annual_tonnes,23253.970942,23253.969999999998,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,M13,mu_daily_tonnes,63.709509,63.70950943013698,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,M13,sigma2_daily,162.356064,162.35606148084327,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,M14,mu_annual_tonnes,26994.218783,26994.219999999998,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,M14,mu_daily_tonnes,73.956764,73.95676378904109,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,M14,sigma2_daily,218.784116,218.7841176540679,0.01,variance formula (pipeline rounding)
+DEM-002,demand,info,passed,market_params.csv,M15,mu_annual_tonnes,30416.880664,30416.88,0.01,annual demand formula (pipeline rounding)
+DEM-003,demand,info,passed,market_params.csv,M15,mu_daily_tonnes,83.33392,83.33391962739726,1e-05,daily demand formula (pipeline rounding)
+DEM-004,demand,info,passed,market_params.csv,M15,sigma2_daily,277.781686,277.78168890265613,0.01,variance formula (pipeline rounding)
+PRC-001,price,info,passed,market_params.csv,,,,,,positive observed prices
+PRC-002,price,info,passed,market_params.csv,C01,v_i_baseline,150.0,150.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,C02,v_i_baseline,350.0,350.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,C03,v_i_baseline,470.0,470.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,C04,v_i_baseline,340.0,340.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,C05,v_i_baseline,310.0,310.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,C06,v_i_baseline,140.0,140.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,C07,v_i_baseline,360.0,360.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,C08,v_i_baseline,440.0,440.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,M09,v_i_baseline,265.0,265.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,M10,v_i_baseline,320.0,320.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,M11,v_i_baseline,240.0,240.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,M12,v_i_baseline,610.0,610.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,M13,v_i_baseline,260.0,260.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,M14,v_i_baseline,220.0,220.0,1e-06,net price formula
+PRC-002,price,info,passed,market_params.csv,M15,v_i_baseline,453.3299999999999,453.3299999999999,1e-06,net price formula
+PRC-003,price,info,passed,market_params.csv,M15,observed_price_cny_per_tonne,3453.33,3453.3333333333335,0.01,Jinhua proxy mean (rounded screening value)
+RNT-001,rent,info,passed,dc_params.csv,C01,f_j_cny_per_year,5155200.0,5155200.0,1e-06,fixed cost formula
+RNT-001,rent,info,passed,dc_params.csv,C02,f_j_cny_per_year,3024000.0,3024000.0,1e-06,fixed cost formula
+RNT-001,rent,info,passed,dc_params.csv,C03,f_j_cny_per_year,3240000.0,3240000.0,1e-06,fixed cost formula
+RNT-001,rent,info,passed,dc_params.csv,C04,f_j_cny_per_year,2851200.0,2851200.0,1e-06,fixed cost formula
+RNT-001,rent,info,passed,dc_params.csv,C05,f_j_cny_per_year,3024000.0,3024000.0,1e-06,fixed cost formula
+RNT-001,rent,info,passed,dc_params.csv,C06,f_j_cny_per_year,3196800.0,3196800.0,1e-06,fixed cost formula
+RNT-001,rent,info,passed,dc_params.csv,C07,f_j_cny_per_year,2448000.0,2448000.0,1e-06,fixed cost formula
+RNT-001,rent,info,passed,dc_params.csv,C08,f_j_cny_per_year,2160000.0,2160000.0,1e-06,fixed cost formula
+RNT-002,rent,info,passed,dc_params.csv,C03,warehouse_rent_cny_per_sqm_month,22.5,22.5,1e-09,30-day daily-to-monthly conversion
+RNT-002,rent,info,passed,dc_params.csv,C04,warehouse_rent_cny_per_sqm_month,19.8,19.8,1e-09,30-day daily-to-monthly conversion
+RNT-002,rent,info,passed,dc_params.csv,C05,warehouse_rent_cny_per_sqm_month,21.0,21.0,1e-09,30-day daily-to-monthly conversion
+RNT-002,rent,info,passed,dc_params.csv,C06,warehouse_rent_cny_per_sqm_month,22.2,22.2,1e-09,30-day daily-to-monthly conversion
+RNT-002,rent,info,passed,dc_params.csv,C08,warehouse_rent_cny_per_sqm_month,15.0,15.0,1e-09,30-day daily-to-monthly conversion
+TRN-001,transport,info,passed,supplier_dc.csv,S1|C01,transport_cost_baseline,126.737286,126.73713,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,supplier_dc.csv,S1|C02,transport_cost_baseline,22.949862,22.949939999999998,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,supplier_dc.csv,S1|C03,transport_cost_baseline,92.047059,92.04702,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,supplier_dc.csv,S1|C04,transport_cost_baseline,80.932527,80.93241,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,supplier_dc.csv,S1|C05,transport_cost_baseline,111.368556,111.36840000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,supplier_dc.csv,S1|C06,transport_cost_baseline,166.438272,166.43835,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,supplier_dc.csv,S1|C07,transport_cost_baseline,59.702409,59.70237,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,supplier_dc.csv,S1|C08,transport_cost_baseline,113.355294,113.35544999999999,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|C01,transport_cost_baseline,0.0,0.0,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|C02,transport_cost_baseline,116.688858,116.68878000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|C03,transport_cost_baseline,37.311768,37.311690000000006,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|C04,transport_cost_baseline,53.09967,53.099669999999996,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|C05,transport_cost_baseline,69.903093,69.90321,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|C06,transport_cost_baseline,84.983301,84.98334,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|C07,transport_cost_baseline,181.915383,181.9155,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|C08,transport_cost_baseline,39.713973,39.714090000000006,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|M09,transport_cost_baseline,69.010188,69.01011000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|M10,transport_cost_baseline,47.316828,47.316750000000006,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|M11,transport_cost_baseline,90.829479,90.82943999999999,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|M12,transport_cost_baseline,74.671857,74.67174,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|M13,transport_cost_baseline,59.211243,59.211360000000006,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|M14,transport_cost_baseline,136.68096,136.68096,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C01|M15,transport_cost_baseline,129.479571,129.47961,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|C01,transport_cost_baseline,115.415625,115.41582,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|C02,transport_cost_baseline,0.0,0.0,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|C03,transport_cost_baseline,83.916807,83.91669,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|C04,transport_cost_baseline,72.351708,72.35163,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|C05,transport_cost_baseline,106.171572,106.17165000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|C06,transport_cost_baseline,161.241249,161.24121000000002,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|C07,transport_cost_baseline,66.370512,66.37059,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|C08,transport_cost_baseline,110.302764,110.30292,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|M09,transport_cost_baseline,50.367915,50.36811,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|M10,transport_cost_baseline,92.166789,92.16675,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|M11,transport_cost_baseline,58.276764,58.276920000000004,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|M12,transport_cost_baseline,127.476219,127.47618000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|M13,transport_cost_baseline,78.16263,78.16263000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|M14,transport_cost_baseline,39.627042,39.627120000000005,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C02|M15,transport_cost_baseline,156.678873,156.67899,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|C01,transport_cost_baseline,36.82848,36.82848,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|C02,transport_cost_baseline,83.71896,83.71896,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|C03,transport_cost_baseline,0.0,0.0,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|C04,transport_cost_baseline,16.44474,16.44474,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|C05,transport_cost_baseline,55.998657,55.998540000000006,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|C06,transport_cost_baseline,84.093282,84.09336,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|C07,transport_cost_baseline,148.945485,148.94529,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|C08,transport_cost_baseline,28.640313,28.64043,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|M09,transport_cost_baseline,36.040329,36.04029,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|M10,transport_cost_baseline,40.716429,40.71639,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|M11,transport_cost_baseline,61.897992,61.89807,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|M12,transport_cost_baseline,61.906221,61.90626,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|M13,transport_cost_baseline,36.081747,36.08163,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|M14,transport_cost_baseline,99.986562,99.98664,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C03|M15,transport_cost_baseline,115.254828,115.25475,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|C01,transport_cost_baseline,50.882676,50.88252,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|C02,transport_cost_baseline,72.324954,72.32511000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|C03,transport_cost_baseline,16.042845,16.04304,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|C04,transport_cost_baseline,0.0,0.0,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|C05,transport_cost_baseline,71.444802,71.44488000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|C06,transport_cost_baseline,99.539466,99.53931000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|C07,transport_cost_baseline,133.979391,133.97943,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|C08,transport_cost_baseline,45.769854,45.77001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|M09,transport_cost_baseline,22.640865,22.64067,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|M10,transport_cost_baseline,46.470216,46.470060000000004,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|M11,transport_cost_baseline,50.489985,50.490179999999995,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|M12,transport_cost_baseline,77.352405,77.35221,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|M13,transport_cost_baseline,47.527233,47.52735,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|M14,transport_cost_baseline,87.613734,87.61389000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C04|M15,transport_cost_baseline,130.700973,130.70109,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|C01,transport_cost_baseline,68.021811,68.02185,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|C02,transport_cost_baseline,106.119273,106.11939000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|C03,transport_cost_baseline,56.090307,56.09019,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|C04,transport_cost_baseline,71.791785,71.79198,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|C05,transport_cost_baseline,0.0,0.0,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|C06,transport_cost_baseline,58.291077,58.29096,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|C07,transport_cost_baseline,157.928862,157.92894,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|C08,transport_cost_baseline,33.273747,33.27363,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|M09,transport_cost_baseline,77.469444,77.4696,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|M10,transport_cost_baseline,96.102318,96.10224000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|M11,transport_cost_baseline,112.790067,112.78995,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|M12,transport_cost_baseline,22.489194,22.48935,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|M13,transport_cost_baseline,31.405296,31.40514,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|M14,transport_cost_baseline,103.546794,103.54695,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C05|M15,transport_cost_baseline,66.55935,66.55935,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|C01,transport_cost_baseline,83.309187,83.30907,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|C02,transport_cost_baseline,162.070779,162.07074,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|C03,transport_cost_baseline,84.552468,84.55239,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|C04,transport_cost_baseline,102.587862,102.58794,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|C05,transport_cost_baseline,58.616883,58.617000000000004,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|C06,transport_cost_baseline,0.0,0.0,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|C07,transport_cost_baseline,216.356634,216.35679,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|C08,transport_cost_baseline,57.886608,57.88653,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|M09,transport_cost_baseline,118.498419,118.49838,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|M10,transport_cost_baseline,112.471476,112.47131999999999,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|M11,transport_cost_baseline,144.356121,144.35616000000002,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|M12,transport_cost_baseline,41.739906,41.73975,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|M13,transport_cost_baseline,85.894224,85.89438,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|M14,transport_cost_baseline,161.974605,161.97480000000002,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C06|M15,transport_cost_baseline,91.669032,91.66911,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|C01,transport_cost_baseline,180.712545,180.71235000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|C02,transport_cost_baseline,66.72627,66.72627,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|C03,transport_cost_baseline,146.022318,146.02224,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|C04,transport_cost_baseline,134.907786,134.90762999999998,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|C05,transport_cost_baseline,159.563976,159.56382,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|C06,transport_cost_baseline,216.378279,216.37824000000003,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|C07,transport_cost_baseline,0.0,0.0,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|C08,transport_cost_baseline,166.168236,166.16808,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|M09,transport_cost_baseline,116.311572,116.31165000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|M10,transport_cost_baseline,157.455675,157.45587,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|M11,transport_cost_baseline,117.484809,117.48477,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|M12,transport_cost_baseline,182.719563,182.71968,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|M13,transport_cost_baseline,136.172595,136.17279,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|M14,transport_cost_baseline,58.328517,58.3284,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C07|M15,transport_cost_baseline,188.965413,188.96553,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|C01,transport_cost_baseline,37.951095,37.95129000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|C02,transport_cost_baseline,110.502132,110.50221,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|C03,transport_cost_baseline,28.314078,28.314,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|C04,transport_cost_baseline,46.912905,46.91310000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|C05,transport_cost_baseline,33.1461,33.1461,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|C06,transport_cost_baseline,57.732987,57.73287,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|C07,transport_cost_baseline,165.00822,165.00822000000002,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|C08,transport_cost_baseline,0.0,0.0,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|M09,transport_cost_baseline,62.823462,62.82354000000001,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|M10,transport_cost_baseline,63.976575,63.976380000000006,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|M11,transport_cost_baseline,88.681125,88.68093,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|M12,transport_cost_baseline,37.878594,37.878750000000004,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|M13,transport_cost_baseline,31.838274,31.838430000000002,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|M14,transport_cost_baseline,110.626191,110.62622999999999,0.0005,distance times transport rate (6-decimal output rounding)
+TRN-001,transport,info,passed,dc_market.csv,C08|M15,transport_cost_baseline,92.722539,92.7225,0.0005,distance times transport rate (6-decimal output rounding)
+UNT-001,units,info,passed,processed,,,0,0,,blank/non-finite cells; structural text fields may be intentionally absent
+LIN-001,lineage,info,passed,record_lineage.csv,,,918,918,,lineage record count
+CFG-001,configuration,info,passed,baseline.json,,,,,,configuration parsed; offline audit does not run solvers or network calls
