@@ -46,7 +46,9 @@ def main():
     elif fn in ('supplier_dc.csv','dc_market.csv'):
      if col=='road_distance_km':source='OSRM_CACHE_001';tid=T[col][0];start=r.get('supplier_id') if fn=='supplier_dc.csv' else r.get('dc_id');end=r.get('dc_id') if fn=='supplier_dc.csv' else r.get('market_id');parents=[f'NODE_{start}',f'NODE_{end}','OSRM_CACHE_001'];verify='pending_verification'
      elif col=='transport_cost_baseline':tid=T[col][0];scenario=S['transport_rate_cny_per_tonne_km'][0];parents=[f'{fn}:{rec}:road_distance_km',scenario]
-     elif col.endswith('_id'):role='identifier';source='NODE_'+(r.get('dc_id') or r.get('supplier_id'))
+     elif col=='supplier_id':role='identifier';source='NODE_'+r['supplier_id']
+     elif col=='dc_id':role='identifier';source='NODE_'+r['dc_id']
+     elif col=='market_id':role='identifier';source='NODE_'+r['market_id']
     if not source and role=='derived':source='SCENARIO_ASSUMPTION'
     add(fn,rec,col,val,role,source,tid,scenario,parents,verify)
  cfgp=json.loads((proc/'case_config.json').read_text())

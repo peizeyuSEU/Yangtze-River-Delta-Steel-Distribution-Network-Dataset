@@ -28,6 +28,25 @@ def test_osrm_source_and_arc_endpoints():
  for x in l:
   if x['output_file'] in ('supplier_dc.csv','dc_market.csv') and x['output_column']=='road_distance_km':
    rec=x['output_record_id']; start,end=rec.split('|'); p=json.loads(x['parent_input_ids']); assert f'NODE_{start}' in p and f'NODE_{end}' in p
+def test_arc_identifier_source_mapping():
+ l={(x['output_file'],x['output_record_id'],x['output_column']):x['source_record_id'] for x in read(ROOT/'metadata/record_lineage.csv')}
+ for x in read(ROOT/'data/processed/v0.1.0-preview/supplier_dc.csv'):
+  rec=x['supplier_id']+'|'+x['dc_id']; assert l['supplier_dc.csv',rec,'supplier_id']=='NODE_'+x['supplier_id']; assert l['supplier_dc.csv',rec,'dc_id']=='NODE_'+x['dc_id']
+ for x in read(ROOT/'data/processed/v0.1.0-preview/dc_market.csv'):
+  rec=x['dc_id']+'|'+x['market_id']; assert l['dc_market.csv',rec,'dc_id']=='NODE_'+x['dc_id']; assert l['dc_market.csv',rec,'market_id']=='NODE_'+x['market_id']
+def test_processed_values_and_lineage_are_exact_bijection():
+ actual=[];p=ROOT/'data/processed/v0.1.0-preview'
+ for fn in ('nodes.csv','market_params.csv','dc_params.csv','inventory_params.csv','dc_emission_params.csv','supplier_dc.csv','dc_market.csv'):
+  for r in read(p/fn):
+   rec=r.get('supplier_id')+'|'+r.get('dc_id') if fn=='supplier_dc.csv' else r.get('dc_id')+'|'+r.get('market_id') if fn=='dc_market.csv' else r.get('market_id') or r.get('dc_id') or r.get('node_id')
+   actual += [(fn,rec,k,v) for k,v in r.items() if v!='']
+ cfg=json.loads((p/'case_config.json').read_text()); actual += [('case_config.json','case_config',k,str(v)) for k,v in cfg.items() if v is not None]
+ lineage=[(x['output_file'],x['output_record_id'],x['output_column'],x['output_value']) for x in read(ROOT/'metadata/record_lineage.csv')]; assert len(actual)==len(set(actual))==len(lineage); assert set(actual)==set(lineage)
+def test_case_config_values_and_roles():
+ cfg=json.loads((ROOT/'data/processed/v0.1.0-preview/case_config.json').read_text()); ls=[x for x in read(ROOT/'metadata/record_lineage.csv') if x['output_file']=='case_config.json']; assert len(ls)==len(cfg)==7
+ for x in ls:
+  assert x['output_value']==str(cfg[x['output_column']]); assert x['transformation_id']=='T_CONFIG_MAPPING_001'; assert x['lineage_role']==('structural' if x['output_column']=='version' else 'scenario')
+ assert cfg['carbon_quota']=='not_yet_generated'
 def test_trace_commands():
  import subprocess,sys
  cases=[('market_params.csv','C01','mu_annual_tonnes'),('market_params.csv','M15','observed_price_cny_per_tonne'),('dc_params.csv','C02','f_j_cny_per_year'),('supplier_dc.csv','S1|C01','road_distance_km'),('dc_market.csv','C01|M09','road_distance_km'),('dc_market.csv','C01|M09','transport_cost_baseline'),('inventory_params.csv','C01','F_j_cny_per_order'),('case_config.json','case_config','transport_rate_cny_per_tonne_km')]
@@ -36,7 +55,7 @@ def test_trace_commands():
 def test_representative_formulas():
  import json,math
  cfg=json.loads((ROOT/'config/baseline.json').read_text()); m=read(ROOT/'data/processed/v0.1.0-preview/market_params.csv'); d=read(ROOT/'data/processed/v0.1.0-preview/dc_params.csv'); sd=read(ROOT/'data/processed/v0.1.0-preview/supplier_dc.csv'); dm=read(ROOT/'data/processed/v0.1.0-preview/dc_market.csv'); r=next(x for x in m if x['market_id']=='C01'); assert abs(sum(float(x['demand_weight']) for x in m)-1)<1e-5
- weights=[11637.57,5831.06,12516.7,7716.02,6615.95,7882.7,4000,5000,5000,6000,5000,4000,3000,2500,3500]; assert abs(sum(float(x['demand_weight']) for x in m)-1)<1e-5; assert abs(float(r['mu_daily_tonnes'])-float(r['mu_annual_tonnes'])/cfg['operating_days'])<1e-5; assert abs(float(r['sigma2_daily'])-(cfg['demand_cv']*float(r['mu_daily_tonnes']))**2)<1e-3; assert abs(float(r['v_i_baseline'])-(float(r['observed_price_cny_per_tonne'])-cfg['production_cost_cny_per_tonne']))<1e-8
+ raw_stats=read(ROOT/'data/raw/public/market_observations_raw.csv'); weights={x['market_id']:float(x['second_industry_va_2024_100m_cny']) for x in raw_stats}; assert abs(float(r['demand_weight'])-round(weights['C01']/sum(weights.values()),8))<1e-8; assert abs(float(r['mu_annual_tonnes'])-round(weights['C01']/sum(weights.values())*cfg['regional_total_demand_tonnes'],6))<1e-4; assert abs(float(r['mu_daily_tonnes'])-float(r['mu_annual_tonnes'])/cfg['operating_days'])<1e-5; assert abs(float(r['sigma2_daily'])-(cfg['demand_cv']*float(r['mu_daily_tonnes']))**2)<1e-3; assert abs(float(r['v_i_baseline'])-(float(r['observed_price_cny_per_tonne'])-cfg['production_cost_cny_per_tonne']))<1e-8
  j=next(x for x in d if x['dc_id']=='C02'); raw=next(x for x in read(ROOT/'data/raw/public/dc_observations_raw.csv') if x['dc_id']=='C02'); assert abs(float(j['f_j_cny_per_year'])-float(raw['warehouse_rent_cny_per_sqm_month'])*12*cfg['warehouse_area_sqm']*cfg['fixed_operating_multiplier'])<1e-8
  a=next(x for x in sd if x['dc_id']=='C01'); assert abs(float(a['transport_cost_baseline'])-float(a['road_distance_km'])*cfg['transport_rate_cny_per_tonne_km'])<5e-4; b=next(x for x in dm if x['dc_id']=='C01' and x['market_id']=='M09'); assert abs(float(b['transport_cost_baseline'])-float(b['road_distance_km'])*cfg['transport_rate_cny_per_tonne_km'])<5e-4
 def test_no_forbidden_content():
