@@ -47,9 +47,12 @@ and M15 are explicitly marked as media or bulletin mirrors where applicable.
 
 ### Steel-price records (15)
 
-The 2026-08-02 review records 6 `verified_exact`, 3
-`verified_page_but_value_unavailable`, 0 `content_changed`, and 6
-`pending_manual_review`. No recovered numeric value was changed. PRICE_C03 is
+The 2026-08-02 review records 11 `verified_exact`, 3
+`verified_page_but_value_unavailable`, 0 `content_changed`, and 1
+`pending_manual_review`. No recovered numeric value was changed. PRICE_C01,
+PRICE_C02, PRICE_C05, and PRICE_C07 are supported by the same-day national
+city market table; PRICE_M14 is supported by a same-day Wuhu city market table.
+Supplementary evidence never replaces the original source URL. PRICE_C03 is
 supported by a search-indexed historical snapshot; the dynamic regional entry
 may show another date when opened later and must not be confused with the
 historical snapshot. PRICE_C06 and PRICE_M10 have supplementary same-day

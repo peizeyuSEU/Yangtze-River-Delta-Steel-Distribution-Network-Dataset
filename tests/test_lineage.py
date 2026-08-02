@@ -103,9 +103,13 @@ def test_price_source_verification_and_midpoint_disclosure():
  assert 'Jinhua value is a geographic proxy constructed from Hangzhou, Jiaxing and Shaoxing screening observations' in reg['PRICE_M15']['verification_note']
  assert reg['PRICE_C08']['source_url']=='https://m.steelx2.com/news-content.aspx?id=643704'
  from collections import Counter
- assert Counter(x['verification_status'] for x in reg.values())==Counter({'verified_exact':6,'verified_page_but_value_unavailable':3,'content_changed':0,'pending_manual_review':6})
- for k in ('PRICE_C03','PRICE_C06','PRICE_C08','PRICE_M09','PRICE_M10','PRICE_M11'):
+ assert Counter(x['verification_status'] for x in reg.values())==Counter({'verified_exact':11,'verified_page_but_value_unavailable':3,'content_changed':0,'pending_manual_review':1})
+ for k in ('PRICE_C01','PRICE_C02','PRICE_C03','PRICE_C05','PRICE_C06','PRICE_C07','PRICE_C08','PRICE_M09','PRICE_M10','PRICE_M11','PRICE_M14'):
   assert reg[k]['verification_status']=='verified_exact'
+ assert reg['PRICE_M12']['verification_status']=='pending_manual_review'
+ assert reg['PRICE_C01']['verification_evidence_url']=='https://hq.zgw.com/huizong/jiancai/196043.html'
+ assert reg['PRICE_M14']['verification_evidence_url']=='https://quan.f139.com/data/news/share.do?f=2294099&id=10757554'
+ assert reg['PRICE_C01']['source_url'] != reg['PRICE_C01']['verification_evidence_url']
  assert reg['PRICE_C03']['verification_evidence_type']=='search_indexed_historical_snapshot'
  assert reg['PRICE_M09']['verification_evidence_type']=='historical_range_midpoint'
  assert reg['PRICE_M11']['verification_evidence_type']=='historical_range_midpoint'

@@ -56,20 +56,20 @@ def main():
     }
 
     price_status = {
-        "C01": ("pending_manual_review", "", "The multi-city quotation page is retained; automated review did not reliably expose the historical Shanghai row, so city/date/spec/brand/value need manual confirmation."),
-        "C02": ("pending_manual_review", "", "The multi-city quotation page is retained; automated review did not reliably expose the historical Nanjing row, so city/date/spec/brand/value need manual confirmation."),
+        "C01": ("verified_exact", "https://hq.zgw.com/huizong/jiancai/196043.html", "The supplementary 2026-07-10 national city market table directly confirms the recorded city, HRB400E 20 mm specification, and price. The original source URL is retained."),
+        "C02": ("verified_exact", "https://hq.zgw.com/huizong/jiancai/196043.html", "The supplementary 2026-07-10 national city market table directly confirms the recorded city, HRB400E 20 mm specification, and price. The original source URL is retained."),
         "C03": ("verified_exact", "https://m.steelx2.com/region-quotation.aspx?city=suzhou&typeid=1", "Historical indexed quotation confirms Suzhou, 2026-07-14, HRB400E Phi20, and 3470 CNY/t. The regional quotation URL is dynamic and may display another date when opened later."),
         "C04": ("verified_page_but_value_unavailable", "", "Mysteel page is a dynamic historical quotation; the original range and midpoint require manual page access."),
-        "C05": ("pending_manual_review", "", "The multi-city quotation page is retained; automated review did not reliably expose the historical Hangzhou row, so city/date/spec/brand/value need manual confirmation."),
+        "C05": ("verified_exact", "https://hq.zgw.com/huizong/jiancai/196043.html", "The supplementary 2026-07-10 national city market table directly confirms the recorded city, HRB400E 20 mm specification, and price. The original source URL is retained."),
         "C06": ("verified_exact", "https://www.mysteel.com/", "Mysteel Ningbo same-day market flash confirms Zhongtian HRB400E Phi20 at 3140 CNY/t; the original historical URL is retained."),
-        "C07": ("pending_manual_review", "", "The multi-city quotation page is retained; automated review did not reliably expose the historical Hefei row, so city/date/spec/brand/value need manual confirmation."),
+        "C07": ("verified_exact", "https://hq.zgw.com/huizong/jiancai/196043.html", "The supplementary 2026-07-10 national city market table directly confirms the recorded city, HRB400E 20 mm specification, and price. The original source URL is retained."),
         "C08": ("verified_exact", "https://m.steelx2.com/region-quotation.aspx?city=jiaxing&typeid=1", "Current quotation page confirms Jiaxing, 2026-06-30, HRB400E Phi20, and 3440 CNY/t; the page is supplementary evidence and the original URL is retained."),
         "M09": ("verified_exact", "https://jiancai.m.mysteel.com/m/26060810/142E6539F044F562_abc.html", "Historical Changzhou quotation confirms HRB400E Phi20 at 3240-3290 CNY/t; the recorded 3265 CNY/t is the two-market-quotation midpoint (3240 + 3290) / 2."),
         "M10": ("verified_exact", "https://www.cngold.org/c/2026-07-10/c10006608.html", "Historical multi-city quotation confirms Nantong, 2026-07-10, Zhongtian HRB400E Phi20, and 3320 CNY/t."),
         "M11": ("verified_exact", "https://jiancai.m.mysteel.com/m/26070610/7DB53E9E3046D2F6_abc.html", "Historical Taizhou quotation confirms HRB400E Phi20 at 3190-3290 CNY/t; the recorded 3240 CNY/t is the two-market-quotation midpoint (3190 + 3290) / 2."),
         "M12": ("pending_manual_review", "", "SteelX2 page is retained, but automated review did not reliably expose the historical Shaoxing row and exact specification."),
         "M13": ("verified_page_but_value_unavailable", "", "Mysteel page is a dynamic historical quotation; the Huzhou Phi18-22 specification-band row requires manual page access."),
-        "M14": ("pending_manual_review", "", "The city quotation page is retained; automated review did not reliably expose the historical Wuhu row, so city/date/spec/brand/value need manual confirmation."),
+        "M14": ("verified_exact", "https://quan.f139.com/data/news/share.do?f=2294099&id=10757554", "The supplementary Wuhu market table for 2026-07-10 directly confirms Anhui Changjiang HRB400E Phi20 rebar at 3220 CNY/t. The original source URL is retained."),
         "M15": ("verified_page_but_value_unavailable", "", "Jinhua value is a geographic proxy constructed from Hangzhou, Jiaxing and Shaoxing screening observations; the linked page is supporting context, not a direct Jinhua quotation."),
     }
     rent_status = {
@@ -135,7 +135,7 @@ def main():
             "workbook_sha256": digest, "recovery_status": "recovered",
             "verification_status": pstatus,
             "verification_checked_at": "2026-08-02", "verification_evidence_url": pevidence,
-            "verification_evidence_type": {"C03": "search_indexed_historical_snapshot", "C06": "supplementary_mysteel_market_flash", "C08": "original_page_exact_match", "M09": "historical_range_midpoint", "M10": "supplementary_mysteel_market_flash", "M11": "historical_range_midpoint"}.get(mid, "supporting_context_only" if mid == "M15" else "dynamic_or_restricted_page"),
+            "verification_evidence_type": {"C01": "supplementary_same_day_multicity_market_table_exact_match", "C02": "supplementary_same_day_multicity_market_table_exact_match", "C03": "search_indexed_historical_snapshot", "C05": "supplementary_same_day_multicity_market_table_exact_match", "C06": "supplementary_mysteel_market_flash", "C07": "supplementary_same_day_multicity_market_table_exact_match", "C08": "original_page_exact_match", "M09": "historical_range_midpoint", "M10": "supplementary_mysteel_market_flash", "M11": "historical_range_midpoint", "M14": "supplementary_same_day_city_market_table_exact_match"}.get(mid, "supporting_context_only" if mid == "M15" else "dynamic_or_restricted_page"),
             "verification_note": pnote,
             "notes": note})
 
