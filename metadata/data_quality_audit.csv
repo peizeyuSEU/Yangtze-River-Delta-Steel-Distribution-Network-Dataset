@@ -1,12 +1,20 @@
 ﻿check_id,category,severity,status,file,record_id,field,observed,expected,tolerance,message
 ENT-001,entity,info,passed,nodes.csv,,,,,,unique node IDs=16
-ENT-002,entity,info,passed,nodes.csv,,,"supplier=1,dc=8,market=15","1,8,15",,
+ENT-002,entity,info,passed,nodes.csv,,,"supplier=1,dc=8,market=15,nodes=16","supplier=1,dc=8,market=15,nodes=16",,DC/market role overlap is allowed; role-count sum need not equal node count
 ENT-003,entity,info,passed,dc_params.csv,,,,all DC/market foreign keys exist,,foreign-key check
 ENT-004,entity,info,passed,supplier_dc.csv;dc_market.csv,,,,no duplicate arcs,,arc uniqueness
 GEO-001,coordinates,info,passed,nodes.csv,,,,"latitude [-90,90], longitude [-180,180]",,coordinate bounds
 GEO-002,coordinates,info,passed,nodes.csv,,,,,,no duplicate coordinates across nodes
+DST-003,distance,warning,warning,dc_market.csv,C01|C01,road_distance_km,0.0,0,0,documented_structural_zero: same-city DC-market arc
+DST-003,distance,warning,warning,dc_market.csv,C02|C02,road_distance_km,0.0,0,0,documented_structural_zero: same-city DC-market arc
+DST-003,distance,warning,warning,dc_market.csv,C03|C03,road_distance_km,0.0,0,0,documented_structural_zero: same-city DC-market arc
+DST-003,distance,warning,warning,dc_market.csv,C04|C04,road_distance_km,0.0,0,0,documented_structural_zero: same-city DC-market arc
+DST-003,distance,warning,warning,dc_market.csv,C05|C05,road_distance_km,0.0,0,0,documented_structural_zero: same-city DC-market arc
+DST-003,distance,warning,warning,dc_market.csv,C06|C06,road_distance_km,0.0,0,0,documented_structural_zero: same-city DC-market arc
+DST-003,distance,warning,warning,dc_market.csv,C07|C07,road_distance_km,0.0,0,0,documented_structural_zero: same-city DC-market arc
+DST-003,distance,warning,warning,dc_market.csv,C08|C08,road_distance_km,0.0,0,0,documented_structural_zero: same-city DC-market arc
 DST-001,distance,info,passed,supplier_dc.csv;dc_market.csv,,,"min=0.000,max=554.816",>=0,,128 road distances
-DST-002,distance,info,passed,supplier_dc.csv;dc_market.csv,,,0,0,,no distance anomaly
+DST-002,distance,info,passed,supplier_dc.csv;dc_market.csv,,,0,0,,no Haversine anomaly
 DEM-001,demand,info,passed,market_params.csv,,,0.99999999,1,1e-06,demand weights sum
 DEM-002,demand,info,passed,market_params.csv,C01,mu_annual_tonnes,136835.573955,136835.56999999998,0.01,annual demand formula (pipeline rounding)
 DEM-003,demand,info,passed,market_params.csv,C01,mu_daily_tonnes,374.891983,374.8919834383562,1e-05,daily demand formula (pipeline rounding)
@@ -212,5 +220,20 @@ TRN-001,transport,info,passed,dc_market.csv,C08|M13,transport_cost_baseline,31.8
 TRN-001,transport,info,passed,dc_market.csv,C08|M14,transport_cost_baseline,110.626191,110.62622999999999,0.0005,distance times transport rate (6-decimal output rounding)
 TRN-001,transport,info,passed,dc_market.csv,C08|M15,transport_cost_baseline,92.722539,92.7225,0.0005,distance times transport rate (6-decimal output rounding)
 UNT-001,units,info,passed,processed,,,0,0,,blank/non-finite cells; structural text fields may be intentionally absent
+EMI-001,emissions,info,passed,dc_emission_params.csv,,,,hat_f=fixed_dc_emission; hat_h=inventory_emission_factor,,DC emission parameters
+EMI-002,emissions,info,passed,baseline.json,,,6.996e-05,>0 finite,,transport emissions are derived-on-use as road distance times factor
+SCH-001,schema,info,passed,processed_field_inventory.csv,,,[],all declared column orders match,,data dictionary schema
 LIN-001,lineage,info,passed,record_lineage.csv,,,918,918,,lineage record count
-CFG-001,configuration,info,passed,baseline.json,,,,,,configuration parsed; offline audit does not run solvers or network calls
+LIN-002,lineage,info,passed,record_lineage.csv,,,918,unique lineage_id,,lineage ID uniqueness
+LIN-003,lineage,info,passed,processed,,,918,918,,processed non-empty value count
+LIN-004,lineage,info,passed,processed;record_lineage.csv,,,"processed=918,lineage=918",strict bijection,,processed-to-lineage exact value mapping
+LIN-005,lineage,info,passed,record_lineage.csv,,,0,0,,parent references
+LIN-006,lineage,info,passed,record_lineage.csv,,,0,0,,source-record foreign keys
+LIN-007,lineage,info,passed,record_lineage.csv,,,0,0,,scenario foreign keys
+LIN-008,lineage,info,passed,record_lineage.csv,,,0,0,,transformation registry foreign keys
+WARN-001,limitations,warning,warning,dc_market.csv,C01|C01,road_distance_km,0,0,0,same-city structural zero is permitted
+WARN-002,limitations,warning,warning,market_params.csv,M15,observed_price_cny_per_tonne,proxy,direct observation,,Jinhua price is a documented geographic proxy
+WARN-003,limitations,warning,warning,dc_params.csv,C02|C07,rent_status,specific_listing,city_average,,"rents are specific listings, not city averages"
+WARN-004,limitations,warning,warning,source_records.csv,all,observation_date,mixed,single date,,"source time bases differ across statistics, prices, and rents"
+WARN-005,limitations,warning,warning,case_config.json,case_config,carbon_quota,not_yet_generated,generated quota,,carbon quota is not generated in this preview
+CFG-001,configuration,info,passed,baseline.json,,,"unused=[],cache=True,version_ok=True",known keys used/reserved; carbon_quota not_yet_generated; allow_network=false; cache exists; version matches,,configuration coverage

@@ -139,5 +139,11 @@ def test_offline_data_quality_audit_is_reproducible_and_non_mutating():
  def hashes(): return {f:hashlib.sha256((ROOT/'data/processed/v0.1.0-preview'/f).read_bytes()).hexdigest() for f in files}
  before=hashes(); q=subprocess.run([sys.executable,str(ROOT/'scripts/audit_data_quality.py')],capture_output=True,text=True); assert q.returncode==0,q.stderr
  audit=read(ROOT/'metadata/data_quality_audit.csv'); assert audit and all(x['status'] in {'passed','warning','failed'} for x in audit); assert not any(x['status']=='failed' for x in audit)
+ assert all((x['severity']=='warning')==(x['status']=='warning') for x in audit)
+ allowed={'DST-003','WARN-001','WARN-002','WARN-003','WARN-004','WARN-005'}
+ assert all(x['check_id'] in allowed for x in audit if x['status']=='warning')
+ assert {x['record_id'] for x in audit if x['check_id']=='DST-003'}=={f'C0{i}|C0{i}' for i in range(1,9)}
+ assert any(x['check_id']=='LIN-002' and x['status']=='passed' for x in audit)
+ assert all(any(x['check_id']==k and x['status']=='passed' for x in audit) for k in ('LIN-002','LIN-003','LIN-004','LIN-005','LIN-006','LIN-007','LIN-008','CFG-001','EMI-001','EMI-002','SCH-001'))
  first=(ROOT/'metadata/data_quality_audit.csv').read_bytes(); q=subprocess.run([sys.executable,str(ROOT/'scripts/audit_data_quality.py')],capture_output=True,text=True); assert q.returncode==0,q.stderr; assert first==(ROOT/'metadata/data_quality_audit.csv').read_bytes()
  assert before==hashes(); assert len(read(ROOT/'metadata/record_lineage.csv'))==918
