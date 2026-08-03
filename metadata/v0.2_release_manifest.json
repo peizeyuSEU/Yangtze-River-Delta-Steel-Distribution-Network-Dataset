@@ -1,0 +1,59 @@
+{
+  "dataset_name": "Yangtze River Delta Steel Distribution Network Dataset",
+  "version": "v0.2.0-candidate",
+  "base_version": "v0.1.0-preview",
+  "intracity_distance_km": 10,
+  "intracity_distance_policy": "representative_intracity_delivery_distance",
+  "source_type": "researcher_defined_scenario_parameter",
+  "affected_arc_ids": [
+    "C01|C01",
+    "C02|C02",
+    "C03|C03",
+    "C04|C04",
+    "C05|C05",
+    "C06|C06",
+    "C07|C07",
+    "C08|C08"
+  ],
+  "osrm_recomputed": false,
+  "processed_non_empty_values": 918,
+  "lineage_rows": 918,
+  "processed_files": [
+    {
+      "path": "data/processed/v0.2.0-candidate/case_config.json",
+      "sha256": "05dc7cf4b3ac0af42b2ed9aed36eb919aa28e0f87f668c8246772280d0d4af88"
+    },
+    {
+      "path": "data/processed/v0.2.0-candidate/dc_emission_params.csv",
+      "sha256": "6e79e08b47a60e73b3b74a9ad70627d3300010b96df51bd00438c19c5b2cdcb8"
+    },
+    {
+      "path": "data/processed/v0.2.0-candidate/dc_market.csv",
+      "sha256": "d3748823a74fb1a80950992f7e0c67c2f57678d5a3a9c3f4a8c18273e7b4f248"
+    },
+    {
+      "path": "data/processed/v0.2.0-candidate/dc_params.csv",
+      "sha256": "22655b8f599908f7c385357ce37d4436b7cef36c1015b378b07cf563dda0a6e0"
+    },
+    {
+      "path": "data/processed/v0.2.0-candidate/inventory_params.csv",
+      "sha256": "2828559aa34824293ace2897fb9c026ca6fa984cb25648a24f0594a2df485944"
+    },
+    {
+      "path": "data/processed/v0.2.0-candidate/market_params.csv",
+      "sha256": "dd5758fa17329afd91cc0fa1d40c8c0746ae80c23436ea795c98c8edf0f34710"
+    },
+    {
+      "path": "data/processed/v0.2.0-candidate/nodes.csv",
+      "sha256": "959f7bc9ffac9cc98f97af13481f08c511baed3786b36b6dcf60e3fe340f63a4"
+    },
+    {
+      "path": "data/processed/v0.2.0-candidate/supplier_dc.csv",
+      "sha256": "ec3e0f29d2ee934fc23b1480933b5e36cca4d008987b169b832df72772e49e61"
+    }
+  ],
+  "carbon_quota_status": "not_yet_generated",
+  "preview_release_ready": true,
+  "formal_release_ready": false,
+  "model_execution_ready": false
+}

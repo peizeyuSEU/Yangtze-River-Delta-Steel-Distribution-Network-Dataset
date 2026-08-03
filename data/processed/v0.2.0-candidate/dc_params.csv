@@ -1,0 +1,9 @@
+﻿dc_id,city,warehouse_rent_cny_per_sqm_month,warehouse_area_sqm,fixed_operating_multiplier,f_j_cny_per_year,rent_status
+C01,Shanghai,35.8,10000,1.2,5155200.0,city_average
+C02,Nanjing,21.0,10000,1.2,3024000.0,specific_listing
+C03,Suzhou,22.5,10000,1.2,3240000.0,city_average
+C04,Wuxi,19.8,10000,1.2,2851200.0,city_average
+C05,Hangzhou,21.0,10000,1.2,3024000.0,city_average
+C06,Ningbo,22.2,10000,1.2,3196800.0,city_average
+C07,Hefei,17.0,10000,1.2,2448000.0,specific_listing
+C08,Jiaxing,15.0,10000,1.2,2160000.0,city_average

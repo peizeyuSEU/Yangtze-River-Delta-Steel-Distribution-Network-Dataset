@@ -1,0 +1,10 @@
+﻿check_id,status,message
+V02-001,passed,120 DC-market arcs
+V02-002,passed,no zero-distance arcs
+V02-003,passed,eight intracity distances are 10 km
+V02-004,passed,all eight targeted arcs changed
+V02-005,passed,cross-city values unchanged
+V02-006,passed,intracity source type explicit
+V02-007,passed,quota remains ungenerated
+V02-008,passed,v0.2 lineage has 918 rows
+V02-009,passed,v0.1 directory retained
