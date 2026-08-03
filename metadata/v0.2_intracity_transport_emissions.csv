@@ -1,0 +1,9 @@
+﻿arc_id,representative_distance_km,transport_emission_factor_tco2e_per_tonne_km,transport_emission_tco2e_per_tonne,source_type
+C01|C01,10.000,0.00006996,0.00069960,researcher_defined_scenario_parameter
+C02|C02,10.000,0.00006996,0.00069960,researcher_defined_scenario_parameter
+C03|C03,10.000,0.00006996,0.00069960,researcher_defined_scenario_parameter
+C04|C04,10.000,0.00006996,0.00069960,researcher_defined_scenario_parameter
+C05|C05,10.000,0.00006996,0.00069960,researcher_defined_scenario_parameter
+C06|C06,10.000,0.00006996,0.00069960,researcher_defined_scenario_parameter
+C07|C07,10.000,0.00006996,0.00069960,researcher_defined_scenario_parameter
+C08|C08,10.000,0.00006996,0.00069960,researcher_defined_scenario_parameter
