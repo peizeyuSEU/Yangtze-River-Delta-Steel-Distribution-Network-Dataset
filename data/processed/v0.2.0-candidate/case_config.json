@@ -5,5 +5,10 @@
   "demand_cv": 0.2,
   "transport_rate_cny_per_tonne_km": 0.39,
   "transport_emission_factor_tco2e_per_tonne_km": 6.996e-05,
-  "carbon_quota": "not_yet_generated"
+  "carbon_quota": 14442.842886043889,
+  "carbon_quota_status": "MODEL_DERIVED_ARTIFACT_AVAILABLE",
+  "carbon_quota_artifact_path": "derived/model_generated_carbon_quota/carbon_quota_scenarios.csv",
+  "carbon_quota_source": "MODEL_DERIVED",
+  "source_type": "MODEL_DERIVED",
+  "external_observation": false
 }

@@ -1,0 +1,6 @@
+component,value,unit,source
+facility_emission,660.0,tCO2e/year,P5-4 exact BP
+inventory_emission,3.8040093053711064,tCO2e/year,P5-4 exact BP
+supplier_dc_transport_emission,8499.67730037096,tCO2e/year,P5-4 exact BP
+dc_market_transport_emission,5279.361576367561,tCO2e/year,P5-4 exact BP
+total_E0,14442.842886043889,tCO2e/year,P5-4 exact BP

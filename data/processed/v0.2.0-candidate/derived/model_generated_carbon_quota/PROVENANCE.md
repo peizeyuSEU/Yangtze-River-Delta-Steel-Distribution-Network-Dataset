@@ -1,0 +1,8 @@
+dataset_base_commit=b9fc758dbe11762882bf66cbbc7672da0918adb7
+model_repository=peizeyuSEU/ZTT-OR
+base_model_commit=0dd725354732f9b8011e9e7e8540e0e64a3ff223
+explicit_arc_cost_extension_commit=fb7f435008a60c91b9e0908fd64d3239b4197fcd
+e0_execution_code_commit=698dee34a93b3839835149282d78940cc07dcd31
+e0_results_commit=e2239bd8ea3f4401d6094816d8d143252d59c515
+
+This is a model-derived research scenario artifact, not external or government quota data.

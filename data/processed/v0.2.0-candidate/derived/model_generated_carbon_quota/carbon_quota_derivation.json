@@ -1,0 +1,18 @@
+{
+  "artifact_type": "MODEL_DERIVED_CARBON_QUOTA",
+  "baseline_emission_E0": 14442.842886043889,
+  "unit": "tCO2e/year",
+  "baseline_intracity_distance_km": 10,
+  "baseline_carbon_price": 0,
+  "baseline_temporary_quota": 0,
+  "all_abatement_rates_fixed_to_zero": true,
+  "baseline_solver": "Branch-and-Price",
+  "baseline_solver_status": "OPTIMAL",
+  "solver_run_performed_for_quota_multipliers": false,
+  "default_formal_quota_multiplier": 1.0,
+  "default_formal_quota": 14442.842886043889,
+  "formal_experiment_carbon_price_cny_per_tco2e": 2,
+  "policy_interpretation": "research_scenario_parameter",
+  "external_observation": false,
+  "government_quota": false
+}
